@@ -15,10 +15,10 @@ class CreateInterestsTable extends Migration
     {
         Schema::create('interests', function (Blueprint $table) {
             $table->id();
-            $table->integer('postId');
-            $table->integer('postAuthorId');
+            $table->foreignId('postId');
+            $table->foreignId('postAuthorId');
             $table->string('postAuthorContact')->nullable();
-            $table->integer('userId');
+            $table->foreignId('userId');
             $table->string('userContact')->nullable();
             $table->text('remarks')->default('I am interested in your post.');
             $table->text('status')->default('pending');

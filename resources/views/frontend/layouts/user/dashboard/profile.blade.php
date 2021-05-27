@@ -44,14 +44,15 @@
 
             <div class="panel">
                 <div class="panel-body bio-graph-info">
-                    <h1>Bio Graph</h1>
+                    <h1 style="display: inline-block">Bio Graph </h1><h1 style="display:inline-block;float:right">User status: @if(auth('user')->user()->verification=='not verified') <span style="background:red;color: whitesmoke">Not Verified</span><span><a
+                                href="{{route('user.verification.form')}}">Request User verification</a></span> @elseif(auth('user')->user()->verification=='processing')<span style="background:red;color: whitesmoke">Not Verified</span> <span style="color: #0e6c5e">Processing</span> @else <span style="background:green;color: whitesmoke">Verified</span> @endif</h1>
                     <div class="row">
                         <div class="bio-row">
                             <p><span> Name: </span>: {{auth('user')->user()->name}}</p>
                         </div>
 
                         <div class="bio-row">
-                            <p><span> Email: </span>: {{auth('user')->user()->email}} <button class="btn-primary btn-success">@if(auth('user')->user()->email_verified_at==null) Not Verified <a  href="">verify</a> @else  Verified @endif</button> </p>
+                            <p><span> Email: </span>: {{auth('user')->user()->email}}@if(auth('user')->user()->email_verified_at==null) <button class="btn-primary btn-success"> Not Verified</button> <a style="padding-left: 5px;color: blue;background-color: whitesmoke"  href="{{route('send.verification.link')}}">verify</a> @else <span style="background-color: green; color: white">  Verified </span> @endif </p>
                         </div>
                         <div class="bio-row">
                             <p><span>Role: </span>: {{auth('user')->user()->role}}</p>

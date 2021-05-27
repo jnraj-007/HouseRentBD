@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Interest;
+use App\Mail\Emailverification;
 use App\Mail\PasswordReset;
 use App\Mail\Registration;
 use App\Models\PasswordResets;
@@ -197,6 +198,46 @@ else{    return redirect()->back()->with('success', 'Password Not Matched.');
             return redirect()->back()->with('success','Password not matched! Try again!');
         }
 }
+
+
+
+//email verification start
+
+    public function sendVerificationLink()
+    {
+        $email=auth('user')->user()->email;
+        $token=encrypt($email);
+        Mail::to($email)->send(new Emailverification($email, $token));
+        return redirect()->back()->with('success','Email verification link has been send to you email. Click the link to verify!!!');
+
+//                        Mail::to($request->email)->send(new PasswordReset($validateEmail,$token));
+
+
+}
+
+    public function clickToVerify($id)
+    {
+        $token=decrypt($id);
+        $update=User::where('email',$token)->first();
+        if($update->email_verified_at==null){
+            $message="Your Email verified Succesfully !!!";
+            $update->update([
+                'email_verified_at'=>now(),
+            ]);
+            return view('frontend.layouts.mail.emailverificationmessage',compact('message'));
+        }else{
+            $message="your mail is already Varified";
+            return view('frontend.layouts.mail.emailverificationmessage',compact('message'));
+
+        }
+}
+//email verification end
+
+    public function userVerificationForm()
+    {
+ return view('frontend.layouts.user.userverification.userverificationform');
+    }
+
 
 
 }

@@ -20,6 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('role','10')->default('Tenant');
             $table->text('contact')->unique()->nullable();
             $table->text('address')->nullable();
+            $table->text('gender')->nullable();
+            $table->integer('nIdNumber')->nullable();
+            $table->text('verification')->default('not verified');
             $table->text('image')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

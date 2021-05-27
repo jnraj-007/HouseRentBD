@@ -15,12 +15,12 @@ class CreateUserpackagesTable extends Migration
     {
         Schema::create('userpackages', function (Blueprint $table) {
             $table->id();
-            $table->integer('userId');
-            $table->integer('package_id');
+            $table->foreignId('userId');
+            $table->foreignId('package_id');
             $table->integer('package_price');
             $table->text('packageName');
             $table->integer('numberOfPosts');
-            $table->string('transactionId');
+            $table->foreignId('transactionId');
             $table->string('current_package_status')->default('Inactive');
             $table->integer('amountToPay');
             $table->string('status')->default('pending');

@@ -19,6 +19,7 @@ class CreateMessagesTable extends Migration
             $table->integer('toId');
             $table->foreignId('postId')->nullable();
             $table->string('message');
+            $table->boolean('is_seen')->default(0);
             $table->timestamps();
         });
     }

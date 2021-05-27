@@ -37,8 +37,7 @@ Route::get('/view/post',[FrontendPostController::class,'viewPost'])->name('front
 Route::get('/view/single/post/{id}',[FrontendPostController::class,'viewSinglePost'])->name('frontend.view.single.post');
 
 
-//user dashboard
-Route::get('/user/dashboard',[FrontendUser::class,'userDashboard'])->name('user.dashboard');
+
 
 
 //User registration login
@@ -63,41 +62,67 @@ Route::get('/posts/under_categories/{id}',[FrontendPostController::class,'postsU
 //Request the posts interested
 Route::group(['middleware'=>'interest'],function (){
 
+
+    //user dashboard
+    Route::get('/user/dashboard',[FrontendUser::class,'userDashboard'])->name('user.dashboard');
+
+
     Route::get('/post/interested/{id}',[FrontendPostController::class,'interested'])->name('post.interested');
     //user dashboard interested posts
     Route::get('/interested/posts',[FrontendPostController::class,'interestedPosts'])->name('interested.posts');
 
+
+
 //view users interested in my posts
     Route::get('/interested/users',[FrontendPostController::class,'viewInterestedUsers'])->name('view.interested.users');
+
+
 
 //view approved user list
     Route::get('view/interested/list',[FrontendPostController::class,'viewApprovedUsers'])->name('view.approved.user');
 
+
+
 //approve and disapprove the request
     Route::get('/approve/request/{id}/{action}',[FrontendPostController::class,'approve'])->name('approve.request');
+
+
 
 // delete user request
     Route::get('/delete/request/{id}',[FrontendPostController::class,'deleteRequest'])->name('delete.request');
 
+
 //delete user post
     Route::get('/delete/user/post/{id}',[FrontendPostController::class,'deletePost'])->name('front.delete.user.post');
+
+
 //cacel interest in a post
     Route::get('/cancel/interest/{id}',[FrontendPostController::class,'cancelPackagePurchase'])->name('cancel.post.interest');
+
+
 //user form profile
     Route::get('/user/profile',[FrontendUser::class,'userProfile'])->name('frontend.user.profile');
     Route::get('/user/edit/profile',[FrontendUser::class,'editProfileForm'])->name('user.edit.profile.form');
     Route::put('/update/profile',[FrontendUser::class,'updateUser'])->name('user.profile.update');
 
+
+
     //user create post
     Route::get('/user/post/form',[FrontendPostController::class,'userPostForm'])->name('user.post.form');
+
+
 
 //user package view
     Route::get('/packages',[FrontendPackageController::class,'viewPackages'])->name('user.package.view');
     Route::get('/packages/pending/{id}',[FrontendPackageController::class,'pendingPackage'])->name('user.package.pending');
 
+
+
 //user package purchase form
     Route::get('/package/purchase/form/{id}',[FrontendPackageController::class,'purchaseForm'])->name('purchase.form');
     Route::post('purchase/package',[FrontendPackageController::class,'packagePurchase'])->name('package.purchase');
+
+
 
 //user post add
     Route::post('/user/do/post',[FrontendPostController::class,'userAddPost'])->name('user.create.post');
@@ -110,7 +135,23 @@ Route::group(['middleware'=>'interest'],function (){
     Route::get('/get/messages/{postId}{fromId}',[MessageController::class,'messageFormOwner'])->name('frontend.message.form.owner');//owner message form
     Route::post('/message/post/{postId}{toId}',[MessageController::class,'postMessage'])->name('post.message');//user message post
 Route::post('/owner/message/post/{postId}{fromId}',[MessageController::class,'ownerPostMessage'])->name('owner.post.message');
-});
+
+
+
+
+//email verification
+    Route::get('/send/verification/link',[FrontendUser::class,'sendVerificationLink'])->name('send.verification.link');
+    Route::get('/click/verify/{id}',[FrontendUser::class,'clickToVerify'])->name('click.to.verify');
+
+
+//user profile verification
+    Route::get('profile/verification/form',[FrontendUser::class,'userVerificationForm'])->name('user.verification.form');
+
+
+
+
+
+});//frontend end here
 
 
 
@@ -118,7 +159,7 @@ Route::post('/owner/message/post/{postId}{fromId}',[MessageController::class,'ow
 
 
 
-///ADMIN
+///ADMIN starts here
 Route::group(['prefix'=>'admin'],function (){
 
 
