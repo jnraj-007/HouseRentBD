@@ -1,7 +1,8 @@
 @extends('frontend.layouts.user.dashboard.userDashboardMaster')
 @section('dashboard')
                                     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-                                                            <div class="container">
+                                                            <div class="container" style="background: linear-gradient(90deg, hsla(152, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+">
                                                                 <div class="wrapper wrapper-content animated fadeInRight">
 
                                                                     <div class="row">
@@ -15,7 +16,7 @@
 
                                                                                         <div class="row">
                                                                                             <div class="col-md-4">
-                                                                                                <h style=" background:orangered border-box 20px">Payment in Bkash number: <strong>01277777777777</strong> </h>
+                                                                                                <h1 style=" background:orangered border-box 20px">Payment in Bkash number: <strong>01277777777777</strong> </h1>
                                                                                                 <h2>Summary</h2>
                                                                                                 <strong>Package Name:</strong>: {{$data->name}} <br>
                                                                                                 <strong>Price:</strong>: <span class="text-navy">{{$data->price}}</span><br>
@@ -40,9 +41,23 @@
 
                                                                                                     <div class="row">
                                                                                                         <div class="col-xs-12">
-                                                                                                            <div class="form-group">
+                                                                                                            <div class="form-group" style="margin-top: 40px">
+                                                                                                                <label>Choose Payment Method</label>
+                                                                                                                <select class="form-control col-xs-12" name="paymentMethod" id="" style="width: 259px">
+                                                                                                                    <option value="">Select Payment Method</option>
+                                                                                                                    <option value="Nagad">Nagad(recommended)</option>
+                                                                                                                    <option value="Bkash">Bkash</option>
+                                                                                                                    <option value="Rocket">Rocket</option>
+                                                                                                                </select>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-xs-12">
+                                                                                                            <div class="form-group" >
                                                                                                                 <label>Amount paid</label>
-                                                                                                                <input type="number" class="form-control" name="pricePaid" placeholder="Enter amount you Paid.">
+                                                                                                                <input type="number" class="form-control" readonly value="{{$data->price}}" name="pricePaid" placeholder="Enter amount you Paid.">
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>

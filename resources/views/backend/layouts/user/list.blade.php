@@ -6,15 +6,16 @@
     <br>
     <br>
 
-    <table class="table  table-bordered table-hover">
+    <table class="table table-responsive-lg  table-bordered table-hover">
         <thead>
 
             <th>Id</th>
             <th>Name</th>
+            <th>Photo</th>
             <th>Email</th>
             <th>Contact</th>
             <th>Role</th>
-            <th>package</th>
+            <th>Verification</th>
             <th>Action</th>
         </thead>
         <tbody>
@@ -22,13 +23,14 @@
         <tr>
             <td scope="row">{{$key+1}}</td>
             <td>{{$lol->name}}</td>
+            <td><img style="width: 50px" src="{{url('image/users',$lol->image)}}" alt=""></td>
             <td>{{$lol->email}}</td>
-            <td>{{$lol->contact}}</td>
+            <td>@if($lol->contact==null) no contact @else {{$lol->contact}}@endif</td>
             <td>{{$lol->role}}</td>
-            <td>{{$lol->packageId}}</td>
+            <td>{{$lol->verification}}</td>
             <td>
                 <a  href="#"><button class="btn btn-success">View</button></a>
-                <a class="btn btn--red " href="#">Delete</a>
+{{--                <a class="btn btn--red " href="{{route('backend.user.delete')}}">Delete</a>--}}
             </td>
         </tr>
         @endforeach

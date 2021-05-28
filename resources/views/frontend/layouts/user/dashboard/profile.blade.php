@@ -23,6 +23,9 @@
     @if(session()->has('success'))
         <div class="alert alert-success">
             {{ session()->get('success') }}
+        </div>@endif  @if(session()->has('danger'))
+        <div class="alert alert-success">
+            {{ session()->get('danger') }}
         </div>@endif
     <div class="row">
         <div class="profile-nav col-md-3">
@@ -52,7 +55,7 @@
                         </div>
 
                         <div class="bio-row">
-                            <p><span> Email: </span>: {{auth('user')->user()->email}}@if(auth('user')->user()->email_verified_at==null) <button class="btn-primary btn-success"> Not Verified</button> <a style="padding-left: 5px;color: blue;background-color: whitesmoke"  href="{{route('send.verification.link')}}">verify</a> @else <span style="background-color: green; color: white">  Verified </span> @endif </p>
+                            <p><span> Email: </span>: {{auth('user')->user()->email}}@if(auth('user')->user()->email_verified_at==null) <button class="btn-primary btn-success" style="background-color: #98F6FF"> Not Verified</button> <a style="padding-left: 5px;color: blue;background-color: whitesmoke"  href="{{route('send.verification.link')}}">verify</a> @else <span style="background-color: green; color: white">  Verified </span> @endif </p>
                         </div>
                         <div class="bio-row">
                             <p><span>Role: </span>: {{auth('user')->user()->role}}</p>

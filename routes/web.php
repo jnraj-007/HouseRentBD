@@ -66,8 +66,10 @@ Route::group(['middleware'=>'interest'],function (){
     //user dashboard
     Route::get('/user/dashboard',[FrontendUser::class,'userDashboard'])->name('user.dashboard');
 
-
+Route::group(['middleware'=>'verify'],function (){
     Route::get('/post/interested/{id}',[FrontendPostController::class,'interested'])->name('post.interested');
+});
+
     //user dashboard interested posts
     Route::get('/interested/posts',[FrontendPostController::class,'interestedPosts'])->name('interested.posts');
 
@@ -146,6 +148,7 @@ Route::post('/owner/message/post/{postId}{fromId}',[MessageController::class,'ow
 
 //user profile verification
     Route::get('profile/verification/form',[FrontendUser::class,'userVerificationForm'])->name('user.verification.form');
+    Route::post('/submit/verification',[FrontendUser::class,'submitVerification'])->name('submit.for.verification');
 
 
 
@@ -160,6 +163,9 @@ Route::post('/owner/message/post/{postId}{fromId}',[MessageController::class,'ow
 
 
 ///ADMIN starts here
+///
+///
+///
 Route::group(['prefix'=>'admin'],function (){
 
 
@@ -208,12 +214,19 @@ Route::group(['prefix'=>'admin'],function (){
         Route::get('/disapproved/list',[PackageController::class,'disapprovedList'])->name('disapproved.lists');
 //      purchase request action
 
-        Route::get('/approve/request/{request_id}{name}',[PackageController::class,'approveRequest'])->name('approve.purchase.request');
+        Route::get('/approve/request/{request_id}',[PackageController::class,'approveRequest'])->name('approve.purchase.request');
         Route::get('/disapprove/request/{id}',[PackageController::class,'disapproveRequest'])->name('disapprove.purchase.request');
         Route::get('/disapprove/after/approve/{id}',[PackageController::class,'disapproveAfterApprove'])->name('disapprove.after.approve');
 
+//user verification data
+        Route::get('/user/verification/request',[UserController::class,'userVerificationRequests'])->name('user.verification.requests');
+        Route::get('/view/verification/data/{id}',[UserController::class,'viewData'])->name('backend.view.verification.data');
+        Route::get('/verify/user/account/{id}',[UserController::class,'verifyUser'])->name('verify.user');
+        Route::get('/deny/verification/{id}',[UserController::class,'denyVerification'])->name('deny.verification');
+        Route::get('verified/users',[UserController::class,'verifiedUsers'])->name('verified.users.list');
 
-
+//        payment history
+        Route::get('/payment/history',[PackageController::class,'paymentHistory'])->name('payment.history');
 
     });
 

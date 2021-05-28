@@ -20,7 +20,8 @@ class CreateUserpackagesTable extends Migration
             $table->integer('package_price');
             $table->text('packageName');
             $table->integer('numberOfPosts');
-            $table->foreignId('transactionId');
+            $table->string('paymentMethod');
+            $table->string('transactionId');
             $table->string('current_package_status')->default('Inactive');
             $table->integer('amountToPay');
             $table->string('status')->default('pending');

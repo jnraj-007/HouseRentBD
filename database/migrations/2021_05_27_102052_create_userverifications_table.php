@@ -17,7 +17,8 @@ class CreateUserverificationsTable extends Migration
             $table->id();
             $table->foreignId('userId');
             $table->text('image');
-            $table->integer('nIdNumber');
+            $table->string('name');
+            $table->bigInteger('nIdNumber');
             $table->text('frontNId');
             $table->text('backNId');
             $table->string('contact');

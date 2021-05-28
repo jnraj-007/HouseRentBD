@@ -22,7 +22,7 @@ class AdminTableSeeder extends Seeder
             'address'=>'super admin needs no address',
             'role'=>'superAdmin',
             'status'=>'Active',
-            'image'=>'no image'
+            'image'=>'userImage.jpg'
 
         ]);
     }

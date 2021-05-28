@@ -104,10 +104,10 @@ use \App\Models\Interest;
 })->orderBy('created_at','DESC')->paginate(2);
                 @endphp
 
-@php $response= \App\Models\Interest::with(['userinterest','interestPosts'])->where('userId',auth('user')->user()->id)->where('status','!=','pending')->paginate(3);
+@php $response= \App\Models\Interest::with(['authordetails','interestPosts'])->where('userId',auth('user')->user()->id)->where('status','!=','pending')->paginate(3);
 
  @endphp
-@if(count($interestPost)==null&&count($purchase)==null)
+@if(count($interestPost)==null&&count($purchase)==null&&count($response)==null)
                 <li class="nav-item dropdown">
                     <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
                         <i class="mdi mdi-bell-outline"></i>
@@ -157,6 +157,24 @@ use \App\Models\Interest;
                                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                                     <h6 class="preview-subject font-weight-normal mb-1"></h6>
                                     <p class="text-gray ellipsis mb-0">your request for {{ $pur->packageName}} Purchase has  {{$pur->status}} </p>
+                                </div>
+                            </a>
+                            @endforeach
+                        @endif
+
+                            @if($response)
+                            @foreach($response as $pur)
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item preview-item" style="width: 400px" href="{{route('interested.posts')}}">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="mdi mdi-calendar"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject font-weight-normal mb-1"></h6>
+                                    <p class="text-gray  mb-0">your Interest in {{$pur->interestPosts->title}} has  {{$pur->status}} </p>
                                 </div>
                             </a>
                             @endforeach

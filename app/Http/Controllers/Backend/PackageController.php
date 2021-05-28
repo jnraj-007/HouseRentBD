@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\User;
 use App\Models\Userpackage;
 use Illuminate\Http\Request;
 use App\Models\Package;
@@ -40,25 +41,28 @@ class PackageController extends Controller
         return view('backend.layouts.purchase.purchaserequest',compact('purchaseRequest','title'));
     }
 
-    public function approveRequest($id,$username)
+    public function approveRequest($id)
     {
+
         $approve=Userpackage::find($id);
         $approve->update([
             'status'=>'Approved',
             'current_package_status'=>'active'
 
         ]);
-        $paymenthistory=Userpackage::find($id);
+        $username=User::find($approve->userId);
+
         Payment::create([
 
-            'userId'=>$paymenthistory->userId,
-            'userName'=>$username,
-            'packageId'=>$paymenthistory->package_id,
-            'packageName'=>$paymenthistory->packageName,
+            'userId'=>$approve->userId,
+            'userName'=>$username->name,
+            'packageId'=>$approve->package_id,
+            'packageName'=>$approve->packageName,
             'approvedBy'=>auth('admin')->user()->name,
-            'purchaseId'=>$paymenthistory->id,
-            'amount'=>$paymenthistory->amountToPay,
-            'paymentDate'=>$paymenthistory->created_at
+            'purchaseId'=>$approve->id,
+            'amount'=>$approve->amountToPay,
+            'paymentDate'=>$approve->created_at,
+            'transactionId'=>$approve->transactionId
         ]);
         return redirect()->back()->with('success','Request Approved');
 
@@ -91,7 +95,7 @@ class PackageController extends Controller
     public function disapprovedList()
     {
         $title="Disapproved Purchase Requests";
-        $disapprovedRequests=Userpackage::with('userdata')->where('status','Disapproved')->paginate(10);
+        $disapprovedRequests=Userpackage::with('userdata')->where('status','Disapproved')->orderBy('updated_at','DESC')->paginate(10);
         return view('backend.layouts.purchase.purchaseDisapproved',compact('disapprovedRequests','title'));
 
     }
@@ -102,6 +106,13 @@ class PackageController extends Controller
         $approvedRequests=Userpackage::with('userdata')->where('status','Approved')->orWhere('status','expired')->orderBy('updated_at','desc')->paginate(10);
         return view('backend.layouts.purchase.approved',compact('approvedRequests','title'));
 
+    }
+
+    public function paymentHistory()
+    {
+        $title="Payment History";
+        $paymentHistory=Payment::orderBy('created_at','DESC')->paginate(10);
+        return view('backend.layouts.payment.paymenthistory',compact('paymentHistory','title'));
     }
 
 

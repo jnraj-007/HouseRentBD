@@ -69,7 +69,8 @@ class PackageController extends Controller
             'numberOfPosts'=>$request->numberofposts,
             'transactionId'=>$request->transactionId,
             'amountToPay'=>$request->pricePaid,
-            'packageName'=>$request->packageName
+            'packageName'=>$request->packageName,
+            'paymentMethod'=>$request->paymentMethod
 
 
         ]);

@@ -7,6 +7,7 @@
         </div>
     @endif
     <div class="block-body">
+
 {{--        @dd($isExist)--}}
 
         @if($isExist)
@@ -41,7 +42,7 @@
                 <label class="col-sm-3 form-control-label">Rent/month</label>
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <input type="number" required  name="price" placeholder="enter rent amount" class="form-control form-control-lg">
+                        <input type="number" required  name="price" min="1" placeholder="enter rent amount" class="form-control form-control-lg">
                     </div>
                 </div>
             </div>
@@ -77,14 +78,14 @@
 
                             </select>
                         </div>
-                        <div class="col-md-3">
-                            <input class="form-control" required name="area" type="number" placeholder="enter area">
+                        <div class="col-md-3 from-group" >
+                            <input class="form-control" required name="area"  min="1" type="number" placeholder="enter area">
                         </div>
 
-                        <div class="col-md-3 from-group">
+                        <div class="col-md-3 from-group" style="margin-left: -20px;padding-left: 0;">
                             <select name="unit" id="" required class="form-control table-hover">
-                                <option value="" selected>Unit</option>
-                                <option value="SQ FT">SQ FOOT</option>
+{{--                                <option value="" >Unit</option>--}}
+                                <option value="SQ FT" selected>SQ FOOT</option>
                                 <option value="SQ Meter">SQ Meter</option>
 
                             </select>
@@ -107,7 +108,7 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <input class="form-control" required name="sectorNo" type="number" placeholder="enter sector">
+                            <input class="form-control" min="1" required name="sectorNo" type="number" placeholder="enter sector">
                         </div>
                         <div class="col-md-3">
                             <input type="text" placeholder="Road No" required name="roadNo" class="form-control">
@@ -142,21 +143,21 @@
             </div>
 
 
-            <div class="line"></div>
-            <div class="form-group row input-group-prepend">
-                <label class="col-sm-3 form-control-label">Location</label>
-                <div class="col-sm-9">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <input class="form-control" required name="latitude" type="text" placeholder="latitude">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" placeholder="longitude" required name="longitude" class="form-control">
-                        </div>
+{{--            <div class="line"></div>--}}
+{{--            <div class="form-group row input-group-prepend">--}}
+{{--                <label class="col-sm-3 form-control-label">Location</label>--}}
+{{--                <div class="col-sm-9">--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col-md-3">--}}
+{{--                            <input class="form-control" required name="latitude" type="text" placeholder="latitude">--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-3">--}}
+{{--                            <input type="text" placeholder="longitude" required name="longitude" class="form-control">--}}
+{{--                        </div>--}}
 
-                    </div>
-                </div>
-            </div>
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
 
 

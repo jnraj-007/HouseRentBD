@@ -14,11 +14,17 @@
     <ul class="list-unstyled">
         <li class=""><a href="{{route('home')}}"> <i class="icon-home"></i>Home </a></li>
         <li><a href="{{route('category.view')}}"> <i class="icon-grid"></i>categories </a></li>
+
         <li><a href="#exampledropdownDropdow" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Purchase </a>
             <ul id="exampledropdownDropdow" class="collapse list-unstyled ">
                 <li><a href="{{route('purchase.request.list')}}">Purchase Request</a></li>
                 <li><a href="{{route('approved.lists')}}">Purchase Approved</a></li>
                 <li><a href="{{route('disapproved.lists')}}">Purchase Disapproved</a></li>
+            </ul>
+        </li>
+        <li><a href="#exampledropdownDropdowc" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Payments</a>
+            <ul id="exampledropdownDropdowc" class="collapse list-unstyled ">
+                <li><a href="{{route('payment.history')}}">Payment History</a></li>
             </ul>
         </li>
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>posts </a>
@@ -29,8 +35,10 @@
         </li>
         <li><a href="#exampledrop" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>user </a>
             <ul id="exampledrop" class="collapse list-unstyled ">
-                <li><a href="{{route('view.user')}}">view user</a></li>
-                <li><a href="{{route('user.form')}}">add user</a></li>
+                <li><a href="{{route('view.user')}}">View User</a></li>
+                <li><a href="{{route('user.verification.requests')}}">User Verification Request</a></li>
+                <li><a href="{{route('verified.users.list')}}">Verified Users</a></li>
+                <li><a href="{{route('user.form')}}">Add User</a></li>
             </ul>
         </li>
 

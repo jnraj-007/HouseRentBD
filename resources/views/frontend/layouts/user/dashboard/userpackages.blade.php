@@ -68,7 +68,7 @@
                     </h4>
                    <h2 class="mb-5" style="display: inline" >Price: {{$data->price}}</h2>
                    <h2 class="mb-5"  >Post No: {{$data->numberofposts}}</h2>
-                   <p class="mb-5"  > {{$data->description}}</p>
+                   <p class="mb-5"  > {{substr($data->description,0,20)}}...</p>
                     <a href="{{route('purchase.form',$data->id)}}" class="btn btn-success hover">Purchase</a>
 
                 </div>

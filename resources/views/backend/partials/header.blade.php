@@ -23,25 +23,54 @@
 
 
 {{--   notification--}}
-                @php $purchaseNotifications=\App\Models\Userpackage::with('userdata')->where('status','pending')->get(); @endphp
-
-
+                @php $purchaseNotifications=\App\Models\Userpackage::with('userdata')->where('status','pending')->paginate(4); @endphp
+@php   $verification=\App\Models\Userverification::with('viewData')->where('status','pending')->paginate(3); @endphp
+{{--end notification--}}
 
 
 
                 <div class="right-menu list-inline no-margin-bottom">
                     <div class="list-inline-item"><a href="#" class="search-open nav-link"><i class="icon-magnifying-glass-browser"></i></a></div>
 
-                    <div class="list-inline-item dropdown"><a id="navbarDropdownMenuLink1" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle"><i class="icon-email"></i><span class="badge dashbg-1">5</span></a>
-                        <div aria-labelledby="navbarDropdownMenuLink1" class="dropdown-menu messages"><a href="#" class="dropdown-item message d-flex align-items-center">
+                    <div class="list-inline-item dropdown">
+                        <a id="navbarDropdownMenuLink1" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle">
+                            <i class="icon-email"></i><span class="badge dashbg-1">{{count($purchaseNotifications)+count($verification)}}</span>
+                        </a>
+                        <div aria-labelledby="navbarDropdownMenuLink1" class="dropdown-menu messages">
+@if(count($purchaseNotifications)==null&&count($verification)==null)
+                            <a href="#" class="dropdown-item message d-flex align-items-center">
+                                <div class="content">
+                                    <span class="d-block">No notification</span>
+                                </div>
+                            </a>
+                            @else
 
-
-                                <div class="profile"><img src="img/avatar-2.jpg" alt="..." class="img-fluid">
+                           @foreach($purchaseNotifications as $purchase)
+                            <a href="{{route('purchase.request.list')}}" class="dropdown-item message d-flex align-items-center">
+                                <div class="profile"><img src="{{url('image/users/'.$purchase->userdata->image)}}" alt="..." class="img-fluid">
                                     <div class="status away"></div>
                                 </div>
-                                <div class="content">   <strong class="d-block">Sara Wood</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">10:30pm</small></div></a>
+                                <div class="content">
+                                    <strong class="d-block">{{$purchase->userdata->name}}</strong><span class="d-block">Purchase Request for {{$purchase->packageName}} package</span><small class="date d-block">10:30pm</small>
+                                </div>
+                            </a>
+                            @endforeach
 
-                            <a href="#" class="dropdown-item text-center message"> <strong>See All Messages <i class="fa fa-angle-right"></i></strong></a></div>
+
+                                  @foreach($verification as $verify)
+                                   <a href="{{route('user.verification.requests')}}" class="dropdown-item message d-flex align-items-center">
+                                       <div class="profile"><img src="{{url('image/users/'.$verify->viewData->image)}}" alt="..." class="img-fluid">
+                                           <div class="status away"></div>
+                                       </div>
+                                       <div class="content">
+                                           <strong class="d-block">{{$verify->viewData->name}}</strong><span class="d-block">Account verification Request</span><small class="date d-block">{{$verify->created_at}}</small>
+                                       </div>
+                                   </a>
+                               @endforeach
+    @endif
+
+
+                        </div>
                     </div>
 
 

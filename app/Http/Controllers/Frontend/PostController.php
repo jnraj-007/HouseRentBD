@@ -257,8 +257,8 @@ class PostController extends Controller
                    'houseNo'=>"required",
                    'postimage'=>"required",
                    'description'=>"required",
-                   'latitude'=>"required",
-                   'longitude'=>"required"
+//                   'latitude'=>"required",
+//                   'longitude'=>"required"
                    ]);
 
 

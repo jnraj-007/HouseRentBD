@@ -31,9 +31,8 @@
 
 
                 <td>
-                    <a class="btn btn-info" href="#">View</a>
-                    <a class="btn btn--blue" href="#">Edit</a>
-                    <a class="btn btn-danger" href="{{route('package.delete',$package->id)}}">Delete</a>
+                    <a class="btn-sm btn--blue" style="text-decoration: none" href="#">Edit</a>
+                    <a class="btn-sm btn-danger" style="text-decoration: none" href="{{route('package.delete',$package->id)}}">Delete</a>
                 </td>
             </tr>
  @endforeach
@@ -72,7 +71,7 @@
 
                         <div class="form-group">
                             <label for="exampleInputEmail">Number Of Posts</label>
-                            <input name="postNo" required type="number" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Posts Number">
+                            <input name="postNo" required type="number" min="1" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Posts Number">
                         </div>
 
                         <div class="form-group">

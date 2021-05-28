@@ -55,6 +55,11 @@
                                 {{ session()->get('success') }}
                             </div>
                         @endif
+                        @if(session()->has('danger'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('danger') }}
+                            </div>
+                        @endif
                         @auth('user')
                             @if($posts->authorId==auth('user')->user()->id)
                                 <p>you can not interest in your own post</p>

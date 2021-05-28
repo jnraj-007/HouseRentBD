@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\Interest;
 use App\Mail\Emailverification;
 use App\Mail\PasswordReset;
+use App\Mail\ProfileVerificationRequst;
 use App\Mail\Registration;
 use App\Models\PasswordResets;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Userpackage;
+use App\Models\Userverification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -91,11 +93,17 @@ class UserController extends Controller
 
     public function editProfileForm()
     {
-        return view('frontend.layouts.user.dashboard.profileupdate');
+        if(\auth('user')->user()->verification=='verified'){
+            return view('frontend.layouts.user.dashboard.profileupdate');
+        }
+        else{
+            return  redirect()->back()->with('danger','you must verify your account for update account!!!');
+        }
     }
 
     public function updateUser(Request $request)
     {
+
         $request->validate([
             'email'=>'required|email',
             'password'=>'required|min:6'
@@ -236,6 +244,87 @@ else{    return redirect()->back()->with('success', 'Password Not Matched.');
     public function userVerificationForm()
     {
  return view('frontend.layouts.user.userverification.userverificationform');
+    }
+
+    public function submitVerification(Request $request)
+    {
+        $request->validate([
+           'name'=>'required',
+           'nIdNumber'=>'required|unique:users|min:10|max:10',
+           'photo'=>'required|image',
+           'frontNId'=>'required|image',
+           'backNId'=>'required|image',
+           'contact'=>'required|min:11|max:11|unique:users',
+        ]);
+
+        $check=User::find(auth('user')->user()->id);
+        if ($check->verification=='verified'||$check->verification=='processing'){
+            return redirect()->route('frontend.user.profile')->with('danger','Your are not allowed to request for verification!!! ');
+        }else{
+            $image1="";
+
+            if ($request->hasFile('photo'))
+            {
+                $file=$request->file('photo');
+                if ($file->isValid()){
+
+                    $image1=date('Ymdhms').'.'.$file->getClientOriginalExtension();
+                    $file->storeAs('userverification',$image1);
+
+
+                }
+            }
+            $image2="";
+
+            if ($request->hasFile('frontNId'))
+            {
+                $file=$request->file('frontNId');
+                if ($file->isValid()){
+                    $key=\Illuminate\Support\Str::random(3);
+
+                    $image2=date('Ymdhms').$key.'.'.$file->getClientOriginalExtension();
+                    $file->storeAs('userverification',$image2);
+
+
+                }
+            }
+            $image3="";
+
+            if ($request->hasFile('backNId'))
+            {
+                $file=$request->file('backNId');
+                if ($file->isValid()){
+                    $key=\Illuminate\Support\Str::random(2);
+
+                    $image3=date('Ymdhms').$key.'.'.$file->getClientOriginalExtension();
+                    $file->storeAs('userverification',$image3);
+
+
+                }
+            }
+
+
+            $applyVerification=Userverification::create([
+                'name'=>$request->name,
+                'nIdNumber'=>$request->nIdNumber,
+                'userId'=>auth('user')->user()->id,
+                'image'=>$image1,
+                'frontNId'=>$image2,
+                'backNId'=>$image3,
+                'contact'=>$request->contact
+            ]);
+            $update=User::find(auth('user')->user()->id);
+            $update->update([
+                'verification'=>'processing',
+
+            ]);
+            Mail::to(auth('user')->user()->email)->send(new ProfileVerificationRequst($applyVerification));
+            //                        Mail::to($request->email)->send(new PasswordReset($validateEmail,$token));
+            return redirect()->route('frontend.user.profile')->with('success','Request for profile verification has been submitted!!!');
+        }
+
+
+
     }
 
 

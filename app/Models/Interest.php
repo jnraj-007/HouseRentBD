@@ -13,6 +13,10 @@ class Interest extends Model
       return  $this->belongsTo(User::class,'userId','id');
 
     }
+    public function authordetails(){
+      return  $this->belongsTo(User::class,'postAuthorId','id');
+
+    }
     public function postinterest(){
      return   $this->belongsTo(Post::class,'postId','id');
 

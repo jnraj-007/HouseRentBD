@@ -21,6 +21,7 @@ class CreatePaymentsTable extends Migration
             $table->string('packageName');
             $table->string('approvedBy');
             $table->string('purchaseId');
+            $table->string('transactionId');
             $table->string('amount');
             $table->string('paymentDate');
             $table->timestamps();

@@ -50,12 +50,12 @@
 
 <body>
 @include("backend.partials.header")
-<div class="d-flex align-items-stretch" style="color: #0a0c0d">
+<div class="d-flex align-items-stretch" {{--style="color: #0a0c0d"--}}>
     <!-- Sidebar Navigation-->
     @include("backend.partials.sidebar")
     <!-- Sidebar Navigation end-->
-    <div class="page-content" style=" background: linear-gradient(90deg, hsla(52, 43%, 55%, 0.5) 0%, hsla(51, 33%, 75%, 0.5) 100%);">
-        <div class="page-header" style=" background: linear-gradient(90deg, hsla(122, 19%, 30%, 0.5) 0%, hsla(170, 70%, 25%, 0.5) 100%);">
+    <div class="page-content" {{--style=" background: linear-gradient(90deg, hsla(52, 43%, 55%, 0.5) 0%, hsla(51, 33%, 75%, 0.5) 100%);"--}}>
+        <div class="page-header" {{--style=" background: linear-gradient(90deg, hsla(122, 19%, 30%, 0.5) 0%, hsla(170, 70%, 25%, 0.5) 100%);"--}}>
             <div class="container-fluid" >
                 <h2 class="h5 no-margin-bottom" style=" font-family: Roboto, Arial, Helvetica Neue, sans-serif; color: #0e6c5e " >{{$title}}</h2>
             </div>

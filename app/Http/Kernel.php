@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
 
         'auth' => \App\Http\Middleware\Authenticate::class,
         'interest' => \App\Http\Middleware\InterestedPost::class,
+        'verify' => \App\Http\Middleware\CheckVerification::class,
         'frontUser' => \App\Http\Middleware\Frontenduser::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

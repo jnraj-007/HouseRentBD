@@ -30,6 +30,7 @@
             <th>Price</th>
             <th>Paid Amount</th>
             <th>TransactionId</th>
+            <th>payment Method</th>
             <th>current_package_status</th>
             <th>status</th>
             <th>Action</th>
@@ -42,6 +43,7 @@
                     <td> {{$data->package_price}}</td>
                     <td> {{$data->amountToPay}}</td>
                     <td> {{$data->transactionId}}</td>
+                    <td> {{$data->paymentMethod}}</td>
                     <td>{{$data->current_package_status}}</td>
                     <td> {{$data->status}}</td>
                     <td>
