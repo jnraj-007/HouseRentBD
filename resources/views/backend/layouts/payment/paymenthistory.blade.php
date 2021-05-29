@@ -7,6 +7,7 @@
             {{ session()->get('success') }}
         </div>
     @endif
+    <center style="margin-bottom: 30px"><a href="{{route('report.generate.form')}}" class="btn btn-primary">Generate Report</a></center>
     <table class="table  table-bordered table-hover  ">
         <thead>
 
@@ -39,4 +40,5 @@
         @endforeach
         </tbody>
     </table>
+
 @endsection

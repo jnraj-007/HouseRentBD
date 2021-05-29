@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -227,6 +228,11 @@ Route::group(['prefix'=>'admin'],function (){
 
 //        payment history
         Route::get('/payment/history',[PackageController::class,'paymentHistory'])->name('payment.history');
+
+
+//        report generate
+        Route::get('/generate/report/form',[ReportController::class,'reportGenerateForm'])->name('report.generate.form');
+        Route::get('/generate/report',[ReportController::class,'reportGenerate'])->name('generate.report');
 
     });
 
