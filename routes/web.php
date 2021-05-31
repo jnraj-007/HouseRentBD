@@ -28,6 +28,8 @@ use App\Http\Controllers\Frontend\MessageController;
 
 Route::get('/',[HomeController::class,'home'])->name('home.view');
 Route::get('/posts',[FrontendPostController::class,'posts'])->name('frontend.post.view');
+Route::get('/about',[HomeController::class,'about'])->name('frontend.about');
+Route::get('/contact',[HomeController::class,'contact'])->name('frontend.contact');
 
 
 //show post

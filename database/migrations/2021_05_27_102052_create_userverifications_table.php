@@ -21,7 +21,7 @@ class CreateUserverificationsTable extends Migration
             $table->bigInteger('nIdNumber');
             $table->text('frontNId');
             $table->text('backNId');
-            $table->string('contact');
+            $table->string('about');
             $table->string('status')->default('pending');
             $table->timestamps();
         });

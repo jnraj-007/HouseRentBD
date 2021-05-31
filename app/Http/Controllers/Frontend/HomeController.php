@@ -18,5 +18,17 @@ class HomeController extends Controller
 //
     }
 
+    public function about()
+    {
+        $title="About Us";
+        return view('frontend.layouts.about.about',compact('title'));
+
+}
+
+    public function contact()
+    {
+        $title="Contact Us";
+        return view('frontend.layouts.contact.contact',compact('title'));
+}
 
 }

@@ -43,7 +43,7 @@
                                                                                                         <div class="col-xs-12">
                                                                                                             <div class="form-group" style="margin-top: 40px">
                                                                                                                 <label>Choose Payment Method</label>
-                                                                                                                <select class="form-control col-xs-12" name="paymentMethod" id="" style="width: 259px">
+                                                                                                                <select class="form-control col-xs-12" required name="paymentMethod" id="" style="width: 259px">
                                                                                                                     <option value="">Select Payment Method</option>
                                                                                                                     <option value="Nagad">Nagad(recommended)</option>
                                                                                                                     <option value="Bkash">Bkash</option>

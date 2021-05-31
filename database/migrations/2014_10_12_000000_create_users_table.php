@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('packageId')->default('General user');
             $table->string('name');
             $table->string('role','10')->default('Tenant');
-            $table->text('contact')->unique()->nullable();
+            $table->text('about')->unique()->nullable();
             $table->text('address')->nullable();
             $table->text('gender')->nullable();
             $table->integer('nIdNumber')->nullable();

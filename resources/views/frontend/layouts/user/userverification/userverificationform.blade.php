@@ -26,7 +26,7 @@
                     <div class="name" style="color: white">User NId Number</div>
                     <div class="value">
                         <div class="input-group">
-                            <input class="input--style-5" placeholder="Enter NId Number" maxlength="10" minlength="10"  required type="number" name="nIdNumber">
+                            <input class="input--style-5" min="1"  placeholder="Enter NId Number" maxlength="10" minlength="10"  required type="number" name="nIdNumber">
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="input-group-desc">
-                                    <input class="input--style-5" placeholder="Enter Contact No" minlength="11" maxlength="11" required type="number" name="contact">
+                                    <input class="input--style-5" placeholder="Enter Contact No" min="1" minlength="11" maxlength="11" required type="number" name="contact">
                                 </div>
                             </div>
                         </div>

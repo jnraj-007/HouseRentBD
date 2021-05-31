@@ -16,31 +16,33 @@ use PhpParser\Node\Stmt\Global_;
 class PostController extends Controller
 {
     public function posts()
-    {
+    {   $title="Posts";
         $categories=Category::all();
         $posts = Post::with(['categoryName','userDetails'])
             ->whereHas('userDetails',function ($query){
                 $query->where('status','Active');
             })
             ->where('status','Active')->paginate('9');
-        return view('frontend.layouts.posts', compact('posts','categories'));
+        return view('frontend.layouts.posts', compact('posts','categories','title'));
     }
 
     //post under category
 
     public function postsUnderCategory($id)
-    {  $categories=Category::all();
+    {
+        $title="Posts";
+        $categories=Category::all();
         $category = Category::find($id);
          $posts=Post::where('categoryId',$id)->orderBy('created_at','desc')->where('status','Active')->paginate('9');
 //        dd($posts);
 //        return view('frontend.layouts.post.postUnderCategory',compact('posts','categories'));
-        return view('frontend.layouts.posts', compact('posts','categories','category'));
+        return view('frontend.layouts.posts', compact('posts','categories','category','title'));
 
     }
 
 
     public function viewSinglePost($id)
-    {
+    {    $title="Posts";
         $categories=Category::all();
 
         $posts = Post::find($id);
@@ -48,10 +50,10 @@ class PostController extends Controller
         if (Auth::guard('user')->check()) {
 
             $checkPost = Interest::where('userId', auth('user')->user()->id)->where('postId', $id)->first();
-            return view('frontend.layouts.post.singlePostView', compact('posts', 'checkPost','categories','sameCategoryPosts'));
+            return view('frontend.layouts.post.singlePostView', compact('posts', 'checkPost','categories','sameCategoryPosts','title'));
         } else {
 
-            return view('frontend.layouts.post.singlePostView', compact('posts','categories','sameCategoryPosts'));
+            return view('frontend.layouts.post.singlePostView', compact('posts','categories','sameCategoryPosts','title'));
         }
     }
 
@@ -61,7 +63,7 @@ class PostController extends Controller
             $getAuthorId=Post::find($id);
 //        $user=Interest::with('userinterestsdetails')->get();
         if(auth('user')->user()->contact==null){
-            return redirect()->back()->with('success','Please add contact to interest in a post');
+            return redirect()->back()->with('success','Please add about to interest in a post');
         }
 
 

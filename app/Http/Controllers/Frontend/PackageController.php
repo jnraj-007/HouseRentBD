@@ -14,7 +14,7 @@ class PackageController extends Controller
     public function viewPackages()
     {
 
-        $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','Approved')->orderBy('created_at','DESC')->paginate(3);
+        $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','Approved')->orderBy('created_at','DESC')->get();
 
         $packages=Package::all();
         return view('frontend.layouts.user.dashboard.userpackages',compact('packages','user'));

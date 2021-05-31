@@ -9,10 +9,15 @@
     <div class="block-body">
 
 {{--        @dd($isExist)--}}
+        @if(auth('user')->user()->verification!="verified")
+            <h1>For posting you have to veriry your profile <strong><a href="{{route('frontend.user.profile')}}">Verify</a></strong></h1>
+        @else
 
         @if($isExist)
             <h1>For posting you have to purchase a <strong>Package</strong></h1>
+
         @else
+
         <form class="form-horizontal" method="post" action="{{route('user.create.post')}}" enctype="multipart/form-data"  >
             @csrf
 
@@ -170,6 +175,7 @@
             </div>
         </form>
         @endif
+            @endif
     </div>
     </div>
 

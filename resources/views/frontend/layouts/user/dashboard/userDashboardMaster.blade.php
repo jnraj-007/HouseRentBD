@@ -100,7 +100,7 @@ use \App\Models\Interest;
 
                 @endphp
                 @php $purchase=\App\Models\Userpackage::where('userId',auth('user')->user()->id)->where(function ($query){
-        $query->where('status','Approved')->orWhere('status','Disapprove');
+        $query->where('status','Approved')->orWhere('status','Disapproved');
 })->orderBy('created_at','DESC')->paginate(2);
                 @endphp
 
@@ -137,7 +137,7 @@ use \App\Models\Interest;
                             </div>
                             <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="preview-subject font-weight-normal mb-1"></h6>
-                                <p class="text-gray ellipsis mb-0"> {{ $interest->userinterest->name}} is interested your {{$interest->interestPosts->title}} post </p>
+                                <p class="text-gray  mb-0"> {{ $interest->userinterest->name}} is interested your {{$interest->interestPosts->title}} post </p>
                             </div>
                         </a>
                         @endforeach
@@ -148,7 +148,7 @@ use \App\Models\Interest;
                             @foreach($purchase as $pur)
                             <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item preview-item" href="{{route('user.package.view')}}">
+                            <a class="dropdown-item preview-item"   href="{{route('user.package.pending',[$pur->status])}}" >
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-success">
                                         <i class="mdi mdi-calendar"></i>
@@ -156,7 +156,7 @@ use \App\Models\Interest;
                                 </div>
                                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                                     <h6 class="preview-subject font-weight-normal mb-1"></h6>
-                                    <p class="text-gray ellipsis mb-0">your request for {{ $pur->packageName}} Purchase has  {{$pur->status}} </p>
+                                    <p class="text-gray  mb-0">your request for {{ $pur->packageName}} Purchase has  {{$pur->status}} </p>
                                 </div>
                             </a>
                             @endforeach
