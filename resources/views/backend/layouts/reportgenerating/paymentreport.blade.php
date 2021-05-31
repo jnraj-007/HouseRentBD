@@ -17,11 +17,11 @@
 
                     <div class="form-group col-md-6">
                         <label for="from"> Date from:</label>
-                        <input value="{{$fromDate}}" id="from" type="date" class="form-control" name="from_date">
+                        <input @if(isset($fromDate)) value="{{$fromDate}}" @endif id="from" type="date" class="form-control" name="from_date">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="to"> Date to:</label>
-                        <input value="{{$toDate}}" id="to" type="date" class="form-control" name="to_date">
+                        <input @if(isset($fromDate)) value="{{$toDate}}" @endif  id="to" type="date" class="form-control" name="to_date">
                     </div>
                 </div>
             </div>
