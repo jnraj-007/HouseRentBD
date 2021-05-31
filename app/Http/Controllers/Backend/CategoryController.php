@@ -45,4 +45,21 @@ class CategoryController extends Controller
         }
 
     }
+
+    public function editCategoryForm($id)
+    {   $title="Edit Category";
+        $edit=Category::find($id);
+        return view('backend.layouts.category.editcategory',compact('edit','title'));
+    }
+
+    public function updateCategory(Request $request,$id)
+    {
+        $update=Category::find($id);
+        $update->update([
+            'title'=>$request->category_name,
+            'description'=>$request->description,
+            'status'=>$request->status
+        ]);
+        return redirect()->route('category.view')->with('success','Category updated successfully!!!');
+    }
 }

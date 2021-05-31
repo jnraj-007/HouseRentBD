@@ -44,9 +44,9 @@
             <td style="width:30%">{{$data->description}}</td>
 {{--            <td class="text-body" style="width: 25%"; ><textarea style="background: #1a202c; color: white; " class="text-info" cols="50%" rows="3">{{$data->description}}</textarea></td>--}}
             <td style="width: auto">{{$data->status}}</td>
-            <td style="width: auto" ><a href="#" class="btn btn-info">view</a>
+            <td style="width: auto" >{{--<a href="#" class="btn btn-info">view</a>--}}
+                <a href="{{route('edit.category.form',$data->id)}}"   class="btn btn-success" >Edit</a>
                 <a href="{{route('delete',$data->id)}}"   class="btn btn-danger">Delete</a>
-                <a href="#"   class="btn btn-success">Edit</a>
             </td>
         </tr>
         @endforeach

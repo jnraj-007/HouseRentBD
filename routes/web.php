@@ -194,6 +194,8 @@ Route::group(['prefix'=>'admin'],function (){
         Route::get('/category',[CategoryController::class,'viewcategory'])->name('category.view');
         Route::post('/category/create',[CategoryController::class,'createcategory'])->name('category.create');
         Route::get('/category/delete/{id}',[CategoryController::class,'deleteCategory'])->name('delete');
+        Route::get('/category/edit/{id}',[CategoryController::class,'editCategoryForm'])->name('edit.category.form');
+        Route::put('/update/category/{id}',[CategoryController::class,'updateCategory'])->name('update.category');
 //
 //user manage
         Route::get('/users/view',[UserController::class,'viewuser'])->name('view.user');

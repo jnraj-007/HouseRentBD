@@ -1,31 +1,31 @@
-<form action="{{route('category.create')}}" method="post">
-
+@extends('welcome')
+@section('page')
+<form action="{{route('update.category',$edit->id)}}" method="post">
+@method('PUT')
     @csrf
     <div class="modal-body">
 
         <div class="form-group">
             <label for="exampleInputEmail1">Category Name</label>
-            <input name="category_name" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Category name">
+            <input  name="category_name" value="{{$edit->title}}" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Category name">
         </div>
 
         <div class="form-group">
             <label for="exampleInputEmail1">Category Description</label>
-            <textarea class="form-control" name="description" id=""  cols="3" rows="5" placeholder="Enter Description"  ></textarea>
+            <textarea class="form-control" required value="{{$edit->description}}" name="description" id=""  cols="3" rows="5" placeholder="Enter Description"  ></textarea>
         </div>
 
         <div class="form-group">
             <label for="status" >Status</label>
-            <select class="dropdown btn-dark" name="status" id="status">
-                <option value="Active" selected>Active</option>
-                <option value="Inactive">Inactive</option>
+            <select  name="status" required id="status">
+                <option @if($edit->status=='Active')selected @endif value="Active" selected>Active</option>
+                <option @if($edit->status=='Inactive')selected @endif value="Inactive">Inactive</option>
             </select>
         </div>
 
     </div>
-
-
-    <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit"  class="btn btn-primary">Save changes</button>
-    </div>
+
 </form>
+@endsection
