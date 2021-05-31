@@ -18,7 +18,7 @@ class AdminTableSeeder extends Seeder
             'name'=>'admin',
         'email'=>'admin@gmail.com',
         'password'=>bcrypt('123456'),
-            'about'=>'0175555555',
+            'contact'=>'0175555555',
             'address'=>'super admin needs no address',
             'role'=>'superAdmin',
             'status'=>'Active',

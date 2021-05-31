@@ -94,6 +94,9 @@
 {{--                    </a>--}}
 {{--                </li>--}}
                 @php
+                    $updateuserpackage=\App\Models\Userpackage::where('userId',auth('user')->user()->id)->where('numberOfPosts','=',0)->update(['current_package_status'=>'expired', 'status'=>'expired']);
+                @endphp
+                @php
 use \App\Models\Interest;
                     $interestPost =Interest::with(['userinterest','interestPosts'])->where('postAuthorId',auth('user')->user()->id)->
                     where('status','pending')->paginate('5');
@@ -307,10 +310,7 @@ use \App\Models\Interest;
 </div>
 </div>
 </div>
-@php
-    $updateuserpackage=\App\Models\Userpackage::where('userId',auth('user')->user()->id)->where('numberOfPosts','=',0)->update(['current_package_status'=>'expired', 'status'=>'expired']);
 
-    @endphp
 
 
 

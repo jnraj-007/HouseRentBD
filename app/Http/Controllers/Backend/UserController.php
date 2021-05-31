@@ -30,7 +30,7 @@ class UserController extends Controller
             'name'=>'required',
             'email'=>'required|email|unique:users',
             'address'=>'required',
-            'about'=>'required',
+            'contact'=>'required',
             'role'=>'required',
             'password'=>'required',
             'photo'=>'required'
@@ -56,7 +56,7 @@ class UserController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'address'=>$request->address,
-            'about'=>$request->contact,
+            'contact'=>$request->contact,
             'role'=>$request->role,
             'password'=>bcrypt($request->password),
             'packageId'=>$request->package,
@@ -93,7 +93,7 @@ class UserController extends Controller
          $user->update([
              'verification'=>'verified',
              'nIdNumber'=>$verify->nIdNumber,
-             'about'=>$verify->contact
+             'contact'=>$verify->contact
          ]);
          return redirect()->route('verified.users.list')->with('success','Now the user is verified');
     }

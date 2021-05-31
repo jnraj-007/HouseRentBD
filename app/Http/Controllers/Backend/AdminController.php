@@ -26,7 +26,7 @@ class AdminController extends Controller
             'name'=>'required',
             'password'=>'required|min:6',
              'email'=>'required|email|unique:admins',
-             'about'=>'required|unique:admins',
+             'contact'=>'required|unique:admins',
              'status'=>'required',
              'role'=>'required',
              'photo'=>'required'
@@ -50,7 +50,7 @@ class AdminController extends Controller
             'email'=>$request->email,
             'password'=>bcrypt($request->password),
             'address'=>$request->address,
-            'about'=>$request->contact,
+            'contact'=>$request->contact,
             'status'=>$request->status,
             'role'=>$request->role,
           'image'=>$image

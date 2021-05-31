@@ -114,7 +114,7 @@ class UserController extends Controller
             $request->validate([
                 'name' => 'required',
                 'address' => 'required',
-                'about' => 'required|min:11|numeric',
+                'contact' => 'required|min:11|numeric',
                 'role' => 'required',
                 'newPassword' => 'required',
                 'photo' => 'required'
@@ -135,7 +135,7 @@ class UserController extends Controller
 
                 'name' => $request->name,
                 'address' => $request->address,
-                'about' => $request->contact,
+                'contact' => $request->contact,
                 'role' => $request->role,
                 'password' => bcrypt($request->newPassword),
                 'image' => $image
