@@ -46,6 +46,20 @@
     <!-- Main JS-->
     <script src="{{asset('backend')}}/adduser/js/global.js"></script>
     {{--end --}}
+{{--    new admin profile--}}
+
+
+    <link href="{{asset('backend/adminprofile/adminmore/fontawesome/css/all.css')}}" rel="stylesheet">    <!-- Pignose Calender -->
+
+    <!-- Chartist -->
+    <link rel="stylesheet" href="{{asset('backend')}}/adminprofile/adminmore/plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="{{asset('backend')}}/adminprofile/adminmore/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <!-- Custom Stylesheet -->
+
+
+
+
+
 </head>
 
 <body>

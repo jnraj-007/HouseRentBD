@@ -40,23 +40,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-row m-b-55">
-                                    <div class="name"style="color: white">Phone</div>
-                                    <div class="value">
-                                        <div class="row row-refine">
-                                            <div class="col-3">
-                                                <div class="input-group-desc">
-                                                    <h1  class="input--style-5"> + 88</h1>
-                                                </div>
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="input-group-desc">
-                                                    <input class="input--style-5" placeholder="{{auth('user')->user()->contact}}" required minlength="11" maxlength="11" type="number" name="contact">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="form-row m-b-55">--}}
+{{--                                    <div class="name"style="color: white">Phone</div>--}}
+{{--                                    <div class="value">--}}
+{{--                                        <div class="row row-refine">--}}
+{{--                                            <div class="col-3">--}}
+{{--                                                <div class="input-group-desc">--}}
+{{--                                                    <h1  class="input--style-5"> + 88</h1>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-9">--}}
+{{--                                                <div class="input-group-desc">--}}
+{{--                                                    <input class="input--style-5" placeholder="{{auth('user')->user()->contact}}" required minlength="11" maxlength="11" type="number" name="contact">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="form-row">
                                     <div class="name"style="color: white">Old Password</div>
                                     <div class="value">
@@ -75,7 +75,7 @@
                                         <div class="input-group">
                                             <input class="input--style-5" required type="password" name="newPassword">
                                         </div>
-                                    </div>d
+                                    </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="name"style="color: white; ">Role</div>

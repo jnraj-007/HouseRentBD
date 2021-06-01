@@ -238,6 +238,11 @@ Route::group(['prefix'=>'admin'],function (){
         Route::get('/generate/report/form',[ReportController::class,'reportGenerateForm'])->name('report.generate.form');
         Route::get('/generate/report',[ReportController::class,'reportGenerate'])->name('generate.report');
 
+//        admin profile
+        Route::get('/admin/profile/{id}',[AdminController::class,'adminProfile'])->name('admin.profile');
+        Route::put('/admin/update/profile/{id}',[AdminController::class,'updateAdminProfile'])->name('update.admin.profile');
+        Route::put('/admin/update/password/{id}',[AdminController::class,'adminPasswordUpdate'])->name('update.admin.password');
+
     });
 
 

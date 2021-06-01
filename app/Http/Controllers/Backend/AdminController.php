@@ -102,5 +102,72 @@ class AdminController extends Controller
         return redirect()->route('admin.loginForm');
     }
 
+    public function adminProfile($id)
+    {
+        $title="Admin Profile";
+        $admin=Admin::find($id);
+        return view('backend.layouts.adminprofile.adminprofile',compact('admin','title'));
+    }
+
+    public function updateAdminProfile( Request $request,$id)
+    {
+
+//dd($request->all());
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required'
+        ]);
+        $admin_auth=$request->only('email','password');
+        if (Auth::guard('admin')->attempt($admin_auth)){
+
+            $request->validate([
+                'name' => 'required',
+                'address' => 'required',
+
+            ]);
+            $admin= Admin::find($id);
+
+            $admin->update([
+                'address' => $request->address,
+
+            ]);
+
+
+            return redirect()->route('admin.profile',$id)->with('success', 'Profile updated Successfully');
+        }
+
+        else{
+            return redirect()->route('admin.profile',$id)->with('danger', 'Wrong Password');
+
+        }
+    }
+
+    public function adminPasswordUpdate(Request $request,$id)
+    {
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required',
+            'newPassword1'=>'required|min:6',
+            'newPassword2'=>'required|min:6',
+        ]);
+        $admin_auth=$request->only('email','password');
+        if (Auth::guard('admin')->attempt($admin_auth)){
+          if ($request->newPassword1==$request->newPassword2){
+
+              $password=Admin::find($id);
+              $password->update([
+                  'password'=>bcrypt($request->newPassword2)
+              ]);
+              return redirect()->route('admin.profile',$id)->with('success','Password Changed Successfully');
+          }else{
+              return redirect()->route('admin.profile',$id)->with('success',' New Password Does not Match!!!');
+          }
+
+        }else{
+            return redirect()->route('admin.profile',$id)->with('danger',' you entered wrong password. Please contact with SuperAdmin!!!');
+        }
+
+    }
+
 
 }
