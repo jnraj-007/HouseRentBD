@@ -12,7 +12,7 @@
 
         <div class="form-group">
             <label for="exampleInputEmail1">Category Description</label>
-            <textarea class="form-control" required value="{{$edit->description}}" name="description" id=""  cols="3" rows="5" placeholder="Enter Description"  ></textarea>
+            <textarea class="form-control" required name="description" id=""  cols="3" rows="5" placeholder="Enter Description"  >{{$edit->title}}</textarea>
         </div>
 
         <div class="form-group">

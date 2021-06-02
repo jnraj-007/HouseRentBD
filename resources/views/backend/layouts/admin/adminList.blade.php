@@ -29,8 +29,7 @@
                 <td>{{$admins->status}} </td>
                 <td>{{$admins->role}} </td>
                 <td>
-                    <a class="btn btn-info" href="#">View</a>
-                    <a class="btn btn-sm" href="#">Edit</a>
+                    <a class="btn btn-info" href="{{route('admin.profile',$admins->id)}}">View</a>
                     <a class="btn btn-danger" href="{{route('admin.delete',$admins->id)}}">Delete</a>
                 </td>
             </tr>

@@ -25,15 +25,15 @@
             {{ session()->get('success') }}
         </div>@endif
 
-        @if(session()->has('danger'))
+    @if(session()->has('danger'))
         <div class="alert alert-danger">
             {{ session()->get('danger') }}
         </div>@endif
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <div class="alert alert-danger">{{$error}}</div>
-            @endforeach
-        @endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">{{$error}}</div>
+        @endforeach
+    @endif
 
     <div class="row">
         <div class="profile-nav col-md-3">
@@ -46,7 +46,7 @@
                     <p>{{$admin->role}}</p>
                 </div>
 
-{{-- --}}
+                {{-- --}}
             </div>
         </div>
         <div class="profile-info col-md-9">
@@ -118,11 +118,11 @@
                                                         {{ session()->get('danger') }}
                                                     </div>
                                                 @endif
-                                                    @if ($errors->any())
-                                                        @foreach ($errors->all() as $error)
-                                                            <div class="alert alert-danger">{{$error}}</div>
-                                                        @endforeach
-                                                    @endif
+                                                @if ($errors->any())
+                                                    @foreach ($errors->all() as $error)
+                                                        <div class="alert alert-danger">{{$error}}</div>
+                                                    @endforeach
+                                                @endif
 
                                                 <div class="card-body">
                                                     <form action="{{route('update.admin.profile',$admin->id)}}" method="post" >
@@ -134,7 +134,7 @@
                                                                 <div class="row row-space">
                                                                     <div class="col-12">
                                                                         <div class="input-group-desc">
-                                                                            <input required class="input--style-5" type="text" @if(auth('admin')->user()->role!='superAdmin') readonly @endif value="{{$admin->name}}" name="name" placeholder="Your current username is {{$admin->name}} ">
+                                                                            <input required class="input--style-5" type="text"  value="{{$admin->name}}" name="name" placeholder="Your current username is {{$admin->name}} ">
                                                                         </div>
                                                                     </div>
 
@@ -142,27 +142,24 @@
                                                             </div>
                                                         </div>
 
-                                                        <input type="text" hidden name="email" value="{{$admin->email}}">
 
                                                         <div class="form-row">
                                                             <div class="name">Address</div>&nbsp;
                                                             <div class="value">
                                                                 <div class="input-group">
-                                                                    <input required class="input--style-5" type="text" name="address" placeholder="Your current address  {{$admin->address}}">
+                                                                    <input required class="input--style-5" type="text" name="address" value="{{$admin->address}}" placeholder="Your current address  {{$admin->address}}">
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        @if(auth('admin')->user()->role!='superAdmin')
-                                                            <div class="form-row">
-                                                            <div class="name">Password</div>&nbsp;
-                                                            <div class="value">
-                                                                <div class="input-group">
-                                                                    <input required class="input--style-5" type="password" name="password" placeholder="Enter current Password">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endif
+{{--                                                            <div class="form-row">--}}
+{{--                                                                <div class="name">Password</div>&nbsp;--}}
+{{--                                                                <div class="value">--}}
+{{--                                                                    <div class="input-group">--}}
+{{--                                                                        <input required class="input--style-5" type="password" name="password" placeholder="Enter current Password">--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
 
 
                                                         <div>
@@ -221,36 +218,24 @@
                                                             @method('PUT')
                                                             @csrf
                                                             <center>
-                                                                @if(auth('admin')->user()->role!='superAdmin') {{--//for super admin to update password--}}
 
-                                                                <div class="name"><h2>Enter Old Password</h2></div>&nbsp;
+
+
+                                                                <br>
+                                                                <div class="name"><h2>Enter New Password</h2></div>&nbsp;
                                                                 <div class="value">
                                                                     <div class="row row-space">
                                                                         <div class="col-12">
                                                                             <div class="input-group-desc">
-                                                                                <input type="email" hidden required value="{{$admin->email}}">
-                                                                                <input required class="input--style-5" value="" type="password" name="password" placeholder="Enter old password">
+                                                                                <input required class="input--style-5"  type="password" name="newPassword2" placeholder="Enter new password ">
                                                                             </div>
                                                                         </div>
 
                                                                     </div>
                                                                 </div>
-                                                                @endif
+
+
                                                                 <br>
-
-
-                                                                    <div class="name"><h2>Enter New Password</h2></div>&nbsp;
-                                                                    <div class="value">
-                                                                        <div class="row row-space">
-                                                                            <div class="col-12">
-                                                                                <div class="input-group-desc">
-                                                                                    <input required class="input--style-5"  type="password" name="newPassword2" placeholder="Enter new password ">
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <br>
                                                                 <div class="name"><h2>Re-enter New Password</h2></div>&nbsp;
                                                                 <div class="value">
                                                                     <div class="row row-space">
@@ -262,26 +247,20 @@
 
                                                                     </div>
                                                                 </div>
-                                                                    <br>
-
-                                                                    @if(auth('admin')->user()->role=='superAdmin')
-                                                                    <div class="name"><h2>Enter Super admin Password to confirm</h2></div>&nbsp;
-                                                                    <div class="value">
-                                                                        <div class="row row-space">
-                                                                            <div class="col-12">
-                                                                                <div class="input-group-desc">
-                                                                                    <input type="hidden"  name="email" value="{{auth('admin')->user()->email}}">
-                                                                                    <input required class="input--style-5"  type="password" name="password" placeholder="Enter Super admin Password to confirm ">
-                                                                                </div>
+                                                                <br>
+                                                                <div class="name"><h2>Enter Super Admin Password</h2></div>&nbsp;
+                                                                <div class="value">
+                                                                    <div class="row row-space">
+                                                                        <div class="col-12">
+                                                                            <div class="input-group-desc">
+                                                                                <input type="email" hidden name="email" required value="{{$admin->email}}">
+                                                                                <input required class="input--style-5" value="" type="password" name="password" placeholder="Dear Super Admin please enter your password">
                                                                             </div>
-
                                                                         </div>
+
                                                                     </div>
-                                                                    <br>
-                                                                        @endif
-
-
-
+                                                                </div>
+                                                                <br>
                                                             </center>
 
 
@@ -378,46 +357,46 @@
 <div class="tab-pane fade show active" id="message">
     <div class="p-t-15">
 
-            <div class="panel">
-                <div class="panel-body bio-graph-info">
-                    <div class="row">
-                        <div class="bio-row">
-                            <p><span> Name: </span>: {{$admin->name}}</p>
-                        </div>
+        <div class="panel">
+            <div class="panel-body bio-graph-info">
+                <div class="row">
+                    <div class="bio-row">
+                        <p><span> Name: </span>: {{$admin->name}}</p>
+                    </div>
 
-                        <div class="bio-row">
-                            <p><span> Email: </span>: {{$admin->email}} </p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span>Role: </span>: {{$admin->role}}</p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span>Address:</span>: {{$admin->address}} </p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span>Contact:</span>: @if($admin->contact!=null) {{$admin->contact}}@else N/A @endif</p>
-                        </div>
+                    <div class="bio-row">
+                        <p><span> Email: </span>: {{$admin->email}} </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Role: </span>: {{$admin->role}}</p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Address:</span>: {{$admin->address}} </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Contact:</span>: @if($admin->contact!=null) {{$admin->contact}}@else N/A @endif</p>
                     </div>
                 </div>
             </div>
-
-
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-
-
-
-</div>
-
         </div>
+
+
     </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+</div>
+
+</div>
+</div>
 
 </div>
 </body>

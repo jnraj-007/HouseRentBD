@@ -50,7 +50,12 @@
         </li>
 
         <li><a href="{{route('package.view')}}"> <i class="fa fa-bar-chart"></i>packages </a></li>
+
+        @if(auth('admin')->user()->role=='superAdmin')
+           <li><a href="{{route('super.admin.profile',[auth('admin')->user()->id])}}"> <i class="icon-user"></i> profile</a></li>
+        @else
            <li><a href="{{route('admin.profile',[auth('admin')->user()->id])}}"> <i class="icon-user"></i> profile</a></li>
+        @endif
         <li><a href="{{route('admin.logout')}}"> <i class="icon-logout"></i>Login page </a></li></ul>
     {{--</ul><span class="heading">Extras</span>
     <ul class="list-unstyled">

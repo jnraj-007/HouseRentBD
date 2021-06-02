@@ -242,6 +242,10 @@ Route::group(['prefix'=>'admin'],function (){
         Route::get('/admin/profile/{id}',[AdminController::class,'adminProfile'])->name('admin.profile');
         Route::put('/admin/update/profile/{id}',[AdminController::class,'updateAdminProfile'])->name('update.admin.profile');
         Route::put('/admin/update/password/{id}',[AdminController::class,'adminPasswordUpdate'])->name('update.admin.password');
+        Route::put('/admin/photo/update/{id}',[AdminController::class,'updateAdminPhoto'])->name('update.admin.photo');
+
+//        super admin profile
+        Route::get('super/admin/profile/{id}',[AdminController::class,'superAdminProfile'])->name('super.admin.profile');
 
     });
 
