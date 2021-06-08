@@ -43,7 +43,9 @@
               <tr>
                 <td>Action:</td>
                 <td>
+                    @if($data->status!='verified')
                     <a href="{{route('verify.user',[$data->id])}}" class="btn btn-success">Verify</a>
+                    @endif
                     <a href="{{route('deny.verification',[$data->id])}}" class="btn btn-danger">Deny</a>
                 </td>
             </tr>

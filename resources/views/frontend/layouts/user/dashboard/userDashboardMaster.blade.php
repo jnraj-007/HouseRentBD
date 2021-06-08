@@ -59,7 +59,7 @@
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo" href="{{route('user.dashboard')}}"><img src="{{asset('frontend')}}/userDashboard/assets/images/logo.svg" alt="logo" /></a>
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{asset('frontend')}}/userDashboard/assets/images/logo-mini.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="{{route('user.dashboard')}}"><img src="{{asset('frontend')}}/userDashboard/assets/images/logo-mini.svg" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -213,7 +213,7 @@ use \App\Models\Interest;
                 <li class="nav-item nav-profile">
                     <a href="{{route('home.view')}}" class="nav-link">
                         <div class="nav-profile-image">
-                            <img src="{{asset('frontend')}}/userDashboard/assets/images/faces/face1.jpg" alt="profile">
+                            <img src=" {{url('image/users/',auth('user')->user()->image)}}" alt="profile">
                             <span class="login-status online"></span>
                             <!--change to offline or busy as needed-->
                         </div>
@@ -221,7 +221,11 @@ use \App\Models\Interest;
                             <span class="font-weight-bold mb-2">{{auth('user')->user()->name}}</span>
                             <span class="text-secondary text-small">{{auth('user')->user()->role}}</span>
                         </div>
+                        @if(auth('user')->user()->verification=='verified')
                         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                        @else
+                        <i class="mdi mdi-bookmark-off text-danger nav-profile-badge"></i>
+                            @endif
                     </a>
                 </li>
                 <li class="nav-item">

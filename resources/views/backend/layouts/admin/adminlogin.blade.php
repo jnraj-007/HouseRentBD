@@ -30,7 +30,7 @@
 <body>
 
 <div class="limiter" >
-    <div class="container-login100"  style="background-image: url('{{asset('backend')}}/AdminLogin/images/adminbackground.jpg');width: 100%;">
+    <div class="container-login100"  style="background: url('{{asset('backend')}}/AdminLogin/images/adminbackground.jpg') no-repeat center center / cover;">
         <div class="wrap-login100 " style="background-color: #796AFE" >
             <form class="login100-form validate-form" action="{{route('login.admin')}}" method="post" >
                 @csrf

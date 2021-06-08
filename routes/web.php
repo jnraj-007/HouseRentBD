@@ -169,13 +169,13 @@ Route::post('/owner/message/post/{postId}{fromId}',[MessageController::class,'ow
 ///
 ///
 ///
-Route::group(['prefix'=>'admin'],function (){
+Route::group(['prefix'=>'gg'],function (){
 
 
 
 
 //Admin login
-    Route::get('/admin/login',[AdminController::class,'loginForm'])->name('admin.loginForm');
+    Route::get('/login/form',[AdminController::class,'loginForm'])->name('admin.loginForm');
     Route::post('login',[AdminController::class,'login'])->name('login.admin');
 
     Route::group(['middleware'=>'auth'],function (){
@@ -184,28 +184,16 @@ Route::group(['prefix'=>'admin'],function (){
 
 //dashboard
         Route::get('/',[DashboardController::class,'dashboard'])->name('home');
-//Admin
-        Route::get('/Admin/list',[AdminController::class,'adminList'])->name('admin.list');
-        Route::post('/Admin/add',[AdminController::class,'adminAdd'])->name('admin.create');
-        Route::get('/Admin/form',[AdminController::class,'adminForm'])->name('admin.form');
-        Route::get('/Admin/delete/{id}',[AdminController::class,'deleteAdmin'])->name('admin.delete');
 
-//category
-        Route::get('/category',[CategoryController::class,'viewcategory'])->name('category.view');
-        Route::post('/category/create',[CategoryController::class,'createcategory'])->name('category.create');
-        Route::get('/category/delete/{id}',[CategoryController::class,'deleteCategory'])->name('delete');
-        Route::get('/category/edit/{id}',[CategoryController::class,'editCategoryForm'])->name('edit.category.form');
-        Route::put('/update/category/{id}',[CategoryController::class,'updateCategory'])->name('update.category');
-//
+
+
+
 //user manage
         Route::get('/users/view',[UserController::class,'viewuser'])->name('view.user');
         Route::get('/users/form',[UserController::class,'userform'])->name('user.form');
         Route::post('/user/add',[UserController::class,'useradd'])->name('user.add');
 
-//Packages
-        Route::get('/packages/view',[PackageController::class,'view'])->name('package.view');
-        Route::post('/package/add',[PackageController::class,'packageadd'])->name('package.add');
-        Route::get('/package/delete/{id}',[PackageController::class,'packageDelete'])->name('package.delete');
+
 
 // posts
         Route::get('/posts/view',[PostController::class,'viewpost'])->name('post.view');
@@ -217,6 +205,14 @@ Route::group(['prefix'=>'admin'],function (){
         Route::get('/view/purchase/requests',[PackageController::class,'purchaseRequest'])->name('purchase.request.list');
         Route::get('/approved/list',[PackageController::class,'approvedList'])->name('approved.lists');
         Route::get('/disapproved/list',[PackageController::class,'disapprovedList'])->name('disapproved.lists');
+
+
+//        searching payment request
+        Route::post('/paymentId/search',[PackageController::class,'searchPayments'])->name('search.payments');
+
+
+
+
 //      purchase request action
 
         Route::get('/approve/request/{request_id}',[PackageController::class,'approveRequest'])->name('approve.purchase.request');
@@ -230,13 +226,39 @@ Route::group(['prefix'=>'admin'],function (){
         Route::get('/deny/verification/{id}',[UserController::class,'denyVerification'])->name('deny.verification');
         Route::get('verified/users',[UserController::class,'verifiedUsers'])->name('verified.users.list');
 
-//        payment history
-        Route::get('/payment/history',[PackageController::class,'paymentHistory'])->name('payment.history');
+        Route::group(['middleware'=>'adminAccess'],function (){
+            //        super admin profile
+            Route::get('super/admin/profile/{id}',[AdminController::class,'superAdminProfile'])->name('super.admin.profile');
 
+
+            //Admin
+            Route::get('/Admin/list',[AdminController::class,'adminList'])->name('admin.list');
+            Route::post('/Admin/add',[AdminController::class,'adminAdd'])->name('admin.create');
+            Route::get('/Admin/form',[AdminController::class,'adminForm'])->name('admin.form');
+            Route::get('/Admin/delete/{id}',[AdminController::class,'deleteAdmin'])->name('admin.delete');
+
+            //        payment history
+            Route::get('/payment/history',[PackageController::class,'paymentHistory'])->name('payment.history');
 
 //        report generate
-        Route::get('/generate/report/form',[ReportController::class,'reportGenerateForm'])->name('report.generate.form');
-        Route::get('/generate/report',[ReportController::class,'reportGenerate'])->name('generate.report');
+            Route::get('/generate/report/form',[ReportController::class,'reportGenerateForm'])->name('report.generate.form');
+            Route::get('/generate/report',[ReportController::class,'reportGenerate'])->name('generate.report');
+
+
+            //Packages
+            Route::get('/packages/view',[PackageController::class,'view'])->name('package.view');
+            Route::post('/package/add',[PackageController::class,'packageadd'])->name('package.add');
+            Route::get('/package/delete/{id}',[PackageController::class,'packageDelete'])->name('package.delete');
+
+
+            //category
+            Route::get('/category',[CategoryController::class,'viewcategory'])->name('category.view');
+            Route::post('/category/create',[CategoryController::class,'createcategory'])->name('category.create');
+            Route::get('/category/delete/{id}',[CategoryController::class,'deleteCategory'])->name('delete');
+            Route::get('/category/edit/{id}',[CategoryController::class,'editCategoryForm'])->name('edit.category.form');
+            Route::put('/update/category/{id}',[CategoryController::class,'updateCategory'])->name('update.category');
+
+        });
 
 //        admin profile
         Route::get('/admin/profile/{id}',[AdminController::class,'adminProfile'])->name('admin.profile');
@@ -244,8 +266,12 @@ Route::group(['prefix'=>'admin'],function (){
         Route::put('/admin/update/password/{id}',[AdminController::class,'adminPasswordUpdate'])->name('update.admin.password');
         Route::put('/admin/photo/update/{id}',[AdminController::class,'updateAdminPhoto'])->name('update.admin.photo');
 
-//        super admin profile
-        Route::get('super/admin/profile/{id}',[AdminController::class,'superAdminProfile'])->name('super.admin.profile');
+//       view  user profile
+
+        Route::get('/user/profile/{user_id}',[UserController::class,'viewUserProfile'])->name('view.user.profile');
+        Route::get('/verification/view/{id}',[UserController::class,'userVerifiedData'])->name('user.verification.information');
+
+
 
     });
 

@@ -33,7 +33,8 @@
                 <td>{{$request->status}} </td>
                 <td> {{$request->created_at}}</td>
                 <td>
-                    <a class="btn-sm btn-info"  href="{{route('backend.view.verification.data',[$request->id])}}">View</a>
+
+                    <a class="btn-sm btn-info"  href="{{route('backend.view.verification.data',[$request->id])}}">Verification</a>
                 </td>
             </tr>
         @endforeach

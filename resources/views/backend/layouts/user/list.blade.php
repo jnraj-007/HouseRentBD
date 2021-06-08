@@ -29,8 +29,8 @@
             <td>{{$lol->role}}</td>
             <td>{{$lol->verification}}</td>
             <td>
-                <a  href="#"><button class="btn btn-success">View</button></a>
-{{--                <a class="btn btn--red " href="{{route('backend.user.delete')}}">Delete</a>--}}
+                <a  href="{{route('view.user.profile',$lol->id)}}"><button class="btn btn-success">View</button></a>
+{{--                <a class="btn btn--red " href="{{route('user.verification.data.show',$lol->id)}}"></a>--}}
             </td>
         </tr>
         @endforeach

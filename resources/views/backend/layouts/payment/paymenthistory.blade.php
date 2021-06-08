@@ -8,8 +8,9 @@
         </div>
     @endif
     <center style="margin-bottom: 30px"><a href="{{route('report.generate.form')}}" class="btn btn-primary">Generate Report</a></center>
-    <table class="table  table-bordered table-hover  ">
-        <thead>
+    <div class="table-responsive">
+    <table class="table  table-bordered table-hover  " style="display: block;overflow: auto; height: 400px;position: sticky">
+        <thead style="overflow: scroll">
 
         <th>Id</th>
         <th>User Id</th>
@@ -25,7 +26,7 @@
         <tbody>
         @foreach($paymentHistory as $key=> $payment)
             <tr>
-                <th scope="row"> {{$payment->id}}</th>
+                <td scope="row"> {{$payment->id}}</td>
                 <td> {{$payment->userId}}</td>
                 <td>{{$payment->userName}} </td>
                 <td>{{$payment->packageId}} </td>
@@ -40,5 +41,6 @@
         @endforeach
         </tbody>
     </table>
+    </div>
 
 @endsection

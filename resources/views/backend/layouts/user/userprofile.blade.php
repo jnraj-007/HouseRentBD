@@ -1,3 +1,5 @@
+@extends('welcome')
+@section('page')
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +30,10 @@
             <div class="panel">
                 <div class="user-heading round">
                     <a href="#">
-                        <img @if(auth('user')->user()->image!=null) src="{{url('image/users/',auth('user')->user()->image)}}"@else src="https://bootdey.com/img/Content/avatar/avatar3.png" @endif alt="">
+                        <img @if($userData->image!=null) src="{{url('image/users/',$userData->image)}}"@else src="https://bootdey.com/img/Content/avatar/avatar3.png" @endif alt="">
                     </a>
-                    <h1>{{auth('user')->user()->name}}</h1>
-                    <p>{{auth('user')->user()->role}}</p>
+                    <h1>{{$userData->name}}</h1>
+                    <p>{{$userData->role}}</p>
                 </div>
 
                 <ul class="nav nav-pills nav-stacked">
@@ -43,24 +45,24 @@
 
             <div class="panel">
                 <div class="panel-body bio-graph-info">
-                    <h1 style="display: inline-block">Bio Graph </h1><h1 style="display:inline-block;float:right">User status: @if(auth('user')->user()->verification=='not verified') <span style="background:red;color: whitesmoke">Not Verified</span><span><a
-                                href="{{route('user.verification.form')}}">Request User verification</a></span> @elseif(auth('user')->user()->verification=='processing')<span style="background:red;color: whitesmoke">Not Verified</span> <span style="color: #0e6c5e">Processing</span> @else <span style="background:green;color: whitesmoke">Verified</span> @endif</h1>
+                    <h1 style="display: inline-block">Bio Graph </h1><h1 style="display:inline-block;float:right">User status: @if($userData->verification=='not verified') <span style="background:red;color: whitesmoke">Not Verified</span><span><a
+                                href="{{route('user.verification.form')}}">Request User verification</a></span> @elseif($userData->verification=='processing')<span style="background:red;color: whitesmoke">Not Verified</span> <span style="color: #0e6c5e">Processing</span> @else <span style="background:green;color: whitesmoke">Verified</span> @endif</h1>
                     <div class="row">
                         <div class="bio-row">
-                            <p><span> Name: </span>: {{auth('user')->user()->name}}</p>
+                            <p><span> Name: </span>: {{$userData->name}}</p>
                         </div>
 
                         <div class="bio-row">
-                            <p><span> Email: </span>: {{auth('user')->user()->email}}@if(auth('user')->user()->email_verified_at==null) <button class="btn-primary btn-success" style="background-color: #98F6FF"> Not Verified</button> <a style="padding-left: 5px;color: blue;background-color: whitesmoke"  href="{{route('send.verification.link')}}">verify</a> @else <span style="background-color: green; color: white">  Verified </span> @endif </p>
+                            <p><span> Email: </span>: {{$userData->email}}@if($userData->email_verified_at==null) <button class="btn-primary btn-success" style="background-color: #98F6FF"> Not Verified</button> <a style="padding-left: 5px;color: blue;background-color: whitesmoke"  href="{{route('send.verification.link')}}">verify</a> @else <span style="background-color: green; color: white">  Verified </span> @endif </p>
                         </div>
                         <div class="bio-row">
-                            <p><span>Role: </span>: {{auth('user')->user()->role}}</p>
+                            <p><span>Role: </span>: {{$userData->role}}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span>Address:</span>:@if(auth('user')->user()->address!=null) {{auth('user')->user()->address}}@else N/A @endif </p>
+                            <p><span>Address:</span>:@if($userData->address!=null) {{$userData->address}}@else N/A @endif </p>
                         </div>
                         <div class="bio-row">
-                            <p><span>Contact:</span>: @if(auth('user')->user()->contact!=null) {{auth('user')->user()->contact}}@else N/A @endif</p>
+                            <p><span>Contact:</span>: @if($userData->contact!=null) {{$userData->contact}}@else N/A @endif</p>
                         </div>
                     </div>
                 </div>
@@ -78,3 +80,4 @@
 
 </footer>
 </html>
+@endsection

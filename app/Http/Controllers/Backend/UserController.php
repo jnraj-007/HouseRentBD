@@ -116,4 +116,20 @@ class UserController extends Controller
         return view('backend.layouts.userverification.verifiedusers',compact('list','title'));
     }
 
+    public function viewUserProfile($id)
+    {
+        $title="User Profile";
+        $userData=User::find($id);
+        return view('backend.layouts.user.userprofile',compact('userData','title'));
+    }
+
+    public function userVerifiedData($id)
+    {
+        $title="User Verification Data";
+        $data=Userverification::with('viewData')->where('userId',$id)->first();
+        return view('backend.layouts.userverification.viewverifieddata',compact('title','data'));
+
+    }
+
+
 }

@@ -64,7 +64,7 @@ class PackageController extends Controller
             'paymentDate'=>$approve->created_at,
             'transactionId'=>$approve->transactionId
         ]);
-        return redirect()->back()->with('success','Request Approved');
+        return redirect()->route('purchase.request.list')->with('success','Request Approved');
 
 }
 
@@ -111,9 +111,31 @@ class PackageController extends Controller
     public function paymentHistory()
     {
         $title="Payment History";
-        $paymentHistory=Payment::orderBy('created_at','DESC')->paginate(10);
+        $paymentHistory=Payment::orderBy('created_at','DESC')->get();
         return view('backend.layouts.payment.paymenthistory',compact('paymentHistory','title'));
     }
 
+    public function searchPayments(Request $request)
+    {
+        $title="Search History";
+        $data=$request->search;
+        if ($data){
+            $purchaseRequest=Userpackage::with('userdata')
+                ->where('status','pending')
+                ->whereHas( 'userdata',function ($query) use ($data)  {
+                    $query->where('email',$data);
+                })->orWhere(function ($query) use ($data){
+                    $query->where('transactionId','LIKE','%'.$data.'%');
+                })
+                ->get();
+            return view('backend.layouts.purchase.purchaserequest',compact('purchaseRequest','title'));
+        }else{
+            $title="Search History";
+            $purchaseRequest=Userpackage::with('userdata')->where('status','pending')->orderBy('created_at','desc')->paginate(10);
+            return view('backend.layouts.purchase.purchaserequest',compact('purchaseRequest','title'));
+        }
+
+
+}
 
 }

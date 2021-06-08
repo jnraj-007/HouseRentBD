@@ -13,7 +13,7 @@
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
             <div class="navbar-header">
-                <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+                <!-- Navbar Header--><a href="{{route('home')}}" class="navbar-brand">
                     <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">House rent</strong><strong>BD</strong></div>
                     <div class="brand-text brand-sm"><strong class="text-primary">H</strong><strong>R</strong><strong>B</strong></div></a>
                 <!-- Sidebar Toggle Btn-->
