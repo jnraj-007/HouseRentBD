@@ -35,6 +35,26 @@ class PackageController extends Controller
         return redirect()->route('package.view');
     }
 
+    public function packageUpdateForm($id)
+    {
+        $title="Edit Package";
+        $edit=Package::find($id);
+        return view('backend.layouts.packages.editpackage',compact('edit','title'));
+    }
+
+    public function updatePackage(Request $request,$id)
+    {
+        $update=Package::find($id);
+        $update->update([
+            'name'=>$request->package_name,
+            'description'=>$request->description,
+            'price'=>$request->package_price,
+            'numberofposts'=>$request->postNo,
+            'status'=>$request->status
+        ]);
+        return redirect()->route('package.view')->with('success','package updated successfully!');
+    }
+
     public function purchaseRequest()
     {    $title="Purchase Request";
         $purchaseRequest=Userpackage::with('userdata')->where('status','pending')->orderBy('created_at','desc')->paginate(10);
@@ -128,11 +148,11 @@ class PackageController extends Controller
                     $query->where('transactionId','LIKE','%'.$data.'%');
                 })
                 ->get();
-            return view('backend.layouts.purchase.purchaserequest',compact('purchaseRequest','title'));
+            return view('backend.layouts.purchase.purchaserequest',compact('purchaseRequest','title','data'));
         }else{
             $title="Search History";
             $purchaseRequest=Userpackage::with('userdata')->where('status','pending')->orderBy('created_at','desc')->paginate(10);
-            return view('backend.layouts.purchase.purchaserequest',compact('purchaseRequest','title'));
+            return view('backend.layouts.purchase.purchaserequest',compact('purchaseRequest','title','data'));
         }
 
 

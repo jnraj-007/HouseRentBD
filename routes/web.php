@@ -115,6 +115,18 @@ Route::group(['middleware'=>'verify'],function (){
     //user create post
     Route::get('/user/post/form',[FrontendPostController::class,'userPostForm'])->name('user.post.form');
 
+//user post add
+    Route::post('/user/do/post',[FrontendPostController::class,'userAddPost'])->name('user.create.post');
+
+//user post view
+    Route::get('/user/posts/view',[FrontendPostController::class,'userPostView'])->name('user.posts.view');
+
+    //user edit post
+    Route::get('user/edit/post/form/{id}',[FrontendPostController::class,'postEditForm'])->name('user.post.edit.post');
+
+    //user update post
+    Route::put('/user/update/post/{id}',[FrontendPostController::class,'updatePostSubmit'])->name('update.post.submit');
+
 
 
 //user package view
@@ -129,10 +141,7 @@ Route::group(['middleware'=>'verify'],function (){
 
 
 
-//user post add
-    Route::post('/user/do/post',[FrontendPostController::class,'userAddPost'])->name('user.create.post');
-//user post view
-    Route::get('/user/posts/view',[FrontendPostController::class,'userPostView'])->name('user.posts.view');
+
 
 
 //    Message frontend
@@ -249,6 +258,8 @@ Route::group(['prefix'=>'gg'],function (){
             Route::get('/packages/view',[PackageController::class,'view'])->name('package.view');
             Route::post('/package/add',[PackageController::class,'packageadd'])->name('package.add');
             Route::get('/package/delete/{id}',[PackageController::class,'packageDelete'])->name('package.delete');
+            Route::get('/edit/package/form/{id}',[PackageController::class,'packageUpdateForm'])->name('package.update.form');
+            Route::put('/update/package/{id}',[PackageController::class,'updatePackage'])->name('update.package');
 
 
             //category

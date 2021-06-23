@@ -109,11 +109,16 @@
                         <div class="col-md-3 from-group">
                             <select name="region" id="" required class="form-control table-hover">
                                 <option value="" selected>Region</option>
-                                <option value="Uttara">Uttara</option>
+                                <option value="uttara">Uttara</option>
+                              <option  value="mirpur">Mirpur</option>
+                              <option  value="gulshan">Gulshan</option>
+                               <option value="bashundhara">Bashundhara</option>
+                               <option value="dhanmondi">Dhanmondi</option>
+
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <input class="form-control" min="1" required name="sectorNo" type="number" placeholder="enter sector">
+                            <input class="form-control"  required name="sectorNo" type="text" placeholder="enter sector/block No">
                         </div>
                         <div class="col-md-3">
                             <input type="text" placeholder="Road No" required name="roadNo" class="form-control">

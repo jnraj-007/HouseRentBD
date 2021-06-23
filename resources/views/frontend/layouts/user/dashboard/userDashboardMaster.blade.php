@@ -58,8 +58,9 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="{{route('user.dashboard')}}"><img src="{{asset('frontend')}}/userDashboard/assets/images/logo.svg" alt="logo" /></a>
-            <a class="navbar-brand brand-logo-mini" href="{{route('user.dashboard')}}"><img src="{{asset('frontend')}}/userDashboard/assets/images/logo-mini.svg" alt="logo" /></a>
+            {{--<a class="navbar-brand brand-logo" href="{{route('user.dashboard')}}"><img src="{{asset('frontend')}}/userDashboard/assets/images/logo.svg" alt="logo" /></a>--}}
+<a class="navbar-brand brand-logo" href="{{route('user.dashboard')}}"><h1><span style="color:#FF495C;">H</span><span style="color:#960200;">R</span><span style="color:A5CC6B;">BD</span></h1></a>            
+<a class="navbar-brand brand-logo-mini" href="{{route('user.dashboard')}}"><img src="{{asset('frontend')}}/userDashboard/assets/images/logo-mini.svg" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">

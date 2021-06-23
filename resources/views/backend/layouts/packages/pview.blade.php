@@ -31,7 +31,7 @@
 
 
                 <td>
-                    <a class="btn-sm btn--blue" style="text-decoration: none" href="#">Edit</a>
+                    <a class="btn-sm btn--blue" style="text-decoration: none" href="{{route('package.update.form',[$package->id])}}">Edit</a>
                     <a class="btn-sm btn-danger" style="text-decoration: none" href="{{route('package.delete',$package->id)}}">Delete</a>
                 </td>
             </tr>

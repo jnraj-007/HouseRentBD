@@ -9,7 +9,10 @@
 
                 <br>
                 <br>
-
+                <h>  @if(session()->has('success1'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success1') }}
+                        </div>@endif</h>
                 <h>  @if(session()->has('success'))
                         <div class="alert alert-danger">
                             {{ session()->get('success') }}
@@ -34,17 +37,19 @@
 
                         <tr>
 
-                            <td>{{$data->title}} </td>
+                            <td>{{substr($data->title,0,15) }} </td>
                             <td ><img width="100px"  src="{{url('/image/posts/',$data->image)}}" alt=""> </td>
                             <td>{{$data->rentAmount}} </td>
                             <td >{{$data->region}}</td>
                             <td>{{$data->created_at}}</td>
-                            <td>{{$data->expire_at}}</td>
+                            <td>{{ $data->expire_at}}</td>
                             <td> {{$data->status}} </td>
 
-                            <td> <a style="font-size: 10px; padding: 0 5px" class="btn btn-info" href="{{route('frontend.view.single.post',$data->id)}}">View Post</a>
+                            <td>
+                                <a  class="btn-sm btn-info" href="{{route('frontend.view.single.post',$data->id)}}">View Post</a>
+                                <a  class="btn-sm btn-info" href="{{route('user.post.edit.post',[$data->id])}}">Edit Post</a>
                                 @if($data->status=='Active')
-                                    <a class="btn btn-danger" style="font-size: 10px; padding: 0 5px"  href="{{route('front.delete.user.post',$data->id)}}">Delete</a>
+                                    <a class="btn-sm btn-danger"   href="{{route('front.delete.user.post',$data->id)}}">Delete</a>
 
                                 @endif
 

@@ -5,22 +5,22 @@
 <div class="login-page">
     <div class="container d-flex align-items-center">
     <div class="container d-flex align-items-center">
-        <div class="form-holder has-shadow">
-            <div class="row">
+        <div class="form-holder has-shadow" >
+            <div class="row" >
                 <!-- Logo & Information Panel-->
                 <div class="col-lg-6">
-                    <div class="info d-flex align-items-center">
-                        <div class="content">
+                    <div class="info d-flex align-items-center" style="background-color: rgba(217, 244, 215, 0.5)" >
+                        <div class="content" >
                             <div class="logo">
-                                <h1>Dashboard</h1>
+                                <h1>Registration</h1>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <p>Do registration</p>
                         </div>
                     </div>
                 </div>
                 <!-- Form Panel    -->
-                <div class="col-lg-6 bg-white">
-                    <div class="form d-flex align-items-center">
+                <div class="col-lg-6 ">
+                    <div class="form d-flex align-items-center" style="background-color: rgba(255,255,255,0.5)">
                         <div class="content">
                             @if(session()->has('success'))
                                 <div class="alert alert-success">

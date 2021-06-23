@@ -31,8 +31,8 @@
                 <td>{{$lol->verification}}</td>
                 <td>{{$lol->role}}</td>
                 <td>
-                    <a  href="{{route('view.user.profile',$lol->id)}}"><button class="btn-sm btn-success">View</button></a>
-                     <a  href="{{route('user.verification.information',$lol->id)}}">lol</a>
+                    <a  href="{{route('view.user.profile',$lol->id)}}"><button class="btn-sm btn-success">Profile</button></a>
+                     <a  href="{{route('user.verification.information',$lol->id)}}"><button class="btn-sm btn-light">Verified Data</button></a>
                     {{-- <a class="btn btn--red " href="{{route('backend.user.delete')}}">Delete</a>--}}
                 </td>
             </tr>

@@ -116,7 +116,7 @@ class UserController extends Controller
                 'address' => 'required',
                 'role' => 'required',
                 'newPassword' => 'required',
-                'photo' => 'required'
+                'photo' => 'required|image'
             ]);
             $image = "";
 

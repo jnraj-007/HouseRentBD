@@ -21,6 +21,9 @@
         </form>
     </div>
 </div>
+    @if(isset($data)) <h1>searching for <span style="color: chartreuse">{{$data}} </span>  found ({{count($purchaseRequest)}}) </h1>@endif
+
+
     <table class="table  table-bordered table-hover  ">
         <thead>
 

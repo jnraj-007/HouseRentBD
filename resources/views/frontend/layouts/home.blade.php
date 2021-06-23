@@ -109,20 +109,29 @@
                 <div class="row ftco-animate">
                     <div class="col-md-12">
                         <div class="carousel-testimony owl-carousel ftco-owl">
+
+                            @php $admins=\App\Models\Admin::all(); @endphp
+                            @if(count($admins)>0)
+                                @foreach($admins as $admin)
                             <div class="item">
                                 <div class="testimony-wrap py-4 pb-5">
-                                    <div class="user-img mb-4" style="background-image: url({{asset('frontend')}}/master/images/person_1.jpg)">
+                                    <div class="user-img mb-4" style="background-image:url('{{asset('image')}}/admins/{{$admin->image}}');">
 		                    <span class="quote d-flex align-items-center justify-content-center">
 		                      <i class="icon-quote-left"></i>
 		                    </span>
                                     </div>
                                     <div class="text text-center">
                                         <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                        <p class="name">Roger Scott</p>
-                                        <span class="position">Admin</span>
+                                        <p class="name">{{$admin->name}}</p>
+                                        <span class="position">{{$admin->role}}</span>
                                     </div>
                                 </div>
                             </div>
+                                @endforeach
+                                @endif
+
+
+
                         </div>
                     </div>
                 </div>

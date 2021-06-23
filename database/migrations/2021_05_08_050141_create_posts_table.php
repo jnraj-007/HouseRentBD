@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('description');
             $table->double('rentAmount','11','2');
             $table->string('region');
-            $table->integer('sectorNo');
+            $table->string('sectorNo');
             $table->string('roadNo');
             $table->string('houseNo');
             $table->integer('bedroom')->nullable();

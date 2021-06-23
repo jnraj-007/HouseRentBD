@@ -293,8 +293,6 @@ class PostController extends Controller
                'authorRole' => auth('user')->user()->role,
                'packageId' => $package_count->id,
                'expire_at'=>now()->addMonth(),
-               'latitude'=>$request->latitude,
-               'longitude'=>$request->longitude,
                'bedroom'=>$request->bed,
                'bathroom'=>$request->bathroom,
                'area'=>$request->area,
@@ -316,6 +314,64 @@ class PostController extends Controller
         orderBy('created_at','DESC')->paginate('5');
 
         return view('frontend.layouts.user.dashboard.userpostview', compact('posts'));
+
+    }
+
+    public function postEditForm($id)
+    {
+        $category=Category::all();
+        $post=Post::find($id);
+        return view('frontend.layouts.user.dashboard.usereditpost',compact('category','post'));
+    }
+
+    public function updatePostSubmit(Request $request,$id)
+    {
+        $request->validate([
+            'post_title'=>'required',
+            'catId'=>'required',
+            'price'=>'required',
+            'bed'=>'required',
+            'bathroom'=>"required",
+            'area'=>"required",
+            'unit'=>"required",
+            'region'=>"required",
+            'sectorNo'=>"required",
+            'roadNo'=>"required",
+            'houseNo'=>"required",
+            'postimage'=>"required|image",
+            'description'=>"required"
+        ]);
+        $image = "";
+
+        if ($request->hasFile('postimage')) {
+            $file = $request->file('postimage');
+            if ($file->isValid()) {
+
+                $image = date('Ymdhms') . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('posts', $image);
+
+
+            }
+        }
+        $post=Post::find($id);
+        $post->update([
+
+            'title' => $request->post_title,
+            'categoryId' => $request->catId,
+            'rentAmount' => $request->price,
+            'region' => $request->region,
+            'sectorNo' => $request->sectorNo,
+            'roadNo' => $request->roadNo,
+            'houseNo' => $request->houseNo,
+            'description' => $request->description,
+            'image' => $image,
+            'bedroom'=>$request->bed,
+            'bathroom'=>$request->bathroom,
+            'area'=>$request->area,
+            'unit'=>$request->unit
+        ]);
+
+        return redirect()->route('user.posts.view')->with('success1','Post updated successfully');
 
     }
 
