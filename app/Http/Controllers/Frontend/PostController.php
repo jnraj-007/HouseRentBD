@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Interest;
+use App\Models\Message;
 use App\Models\Package;
 use App\Models\Post;
 use App\Models\User;
@@ -200,8 +201,10 @@ class PostController extends Controller
 
         $deletepost=Post::find($id);
         $deleteRequest=Interest::where('postId',$id);
+        $message=Message::where('postId',$id)->delete();
         $deletepost->delete();
         $deleteRequest->delete();
+
         return redirect()->back()->with('success','Post deleted successfully.');
 
 }
@@ -228,7 +231,7 @@ class PostController extends Controller
 
         $checkPackage = Userpackage::where('userId', auth('user')->user()->id)->where('status', 'Approved')->get();
 
-        $category = Category::all();
+        $category = Category::where('status','Active')->get();
         $isExist = !(auth('user')->user()->userpackages()->where('current_package_status', 'active')->exists());
 
 
@@ -373,6 +376,20 @@ class PostController extends Controller
 
         return redirect()->route('user.posts.view')->with('success1','Post updated successfully');
 
+    }
+
+    public function searchPosts(Request $request)
+    {
+        $title="Posts";
+        $categories=Category::all();
+        $request->validate([
+            'region'=>'required'
+        ]);
+        $search=$request->region;
+        if ($search){
+            $posts=Post::where('region','LIKE','%'.$search.'%')->paginate(20);
+            return view('frontend.layouts.posts',compact('title','categories','search','posts'));
+        }
     }
 
 }

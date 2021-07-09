@@ -81,7 +81,7 @@ class UserController extends Controller
         $noOfPosts=Post::where('authorId',auth('user')->user()->id)->get();
         $noOfInterestedPosts=\App\Models\Interest::where('userId',auth('user')->user()->id)->get();
         $noOfInterestsUsers=\App\Models\Interest::where('postAuthorId',auth('user')->user()->id)->get();
-        $noOfPackages=Userpackage::where('userId',auth('user')->user()->id)->where('status','expired')->orWhere('status','Approved')->get();
+        $noOfPackages=Userpackage::where('userId',auth('user')->user()->id)->where('status','!=','pending')->get();
 
         return view('frontend.layouts.user.dashboard.dashboard',compact('noOfPosts','noOfInterestedPosts','noOfInterestsUsers','noOfPackages'));
     }

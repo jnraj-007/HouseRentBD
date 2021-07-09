@@ -39,7 +39,8 @@ Route::get('/view/post',[FrontendPostController::class,'viewPost'])->name('front
 //single post view
 Route::get('/view/single/post/{id}',[FrontendPostController::class,'viewSinglePost'])->name('frontend.view.single.post');
 
-
+//user search post by region
+Route::post('post/search/result',[FrontendPostController::class,'searchPosts'])->name('user.search.post');
 
 
 

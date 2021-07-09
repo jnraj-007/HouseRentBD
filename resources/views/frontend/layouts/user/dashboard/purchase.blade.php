@@ -16,7 +16,8 @@
 
                                                                                         <div class="row">
                                                                                             <div class="col-md-4">
-                                                                                                <h1 style=" background:orangered border-box 20px">Payment in Bkash number: <strong>01277777777777</strong> </h1>
+                                                                                                <p style=" background:orangered border-box 20px">Payment in Bkash number: <strong>01277777777777</strong> </p>
+                                                                                                <p style="color: green">User your email as reference</p>
                                                                                                 <h2>Summary</h2>
                                                                                                 <strong>Package Name:</strong>: {{$data->name}} <br>
                                                                                                 <strong>Price:</strong>: <span class="text-navy">{{$data->price}}</span><br>

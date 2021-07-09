@@ -10,7 +10,7 @@
                     <!-- Logo & Information Panel-->
                     <div class="col-lg-6" >
                         <div class="info d-flex align-items-center" style="background-color: rgba(255,255,255,0.5)">
-                            <div class="content" style="color: aquamarine">
+                            <div class="content" style="color: green">
                                 <div class="logo">
                                     <h1>Login</h1>
                                 </div>

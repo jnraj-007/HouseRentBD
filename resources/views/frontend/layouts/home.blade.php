@@ -60,39 +60,79 @@
         </div>
     </div>
     <div class="container-fluid">
+{{--        <div class="row">--}}
+{{--            @foreach($mostRecommended as $data)--}}
+{{--            <div class="col-sm col-md-6 col-lg ftco-animate">--}}
+{{--                <div class="properties">--}}
+{{--                    <a href="{{route('frontend.view.single.post',$data->id)}}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image:url('{{asset('image')}}/posts/{{$data->image}}');">--}}
+{{--                        <div class="icon d-flex justify-content-center align-items-center">--}}
+{{--                            <span class="icon-search2"></span>--}}
+{{--                        </div>--}}
+{{--                    </a>--}}
+{{--                    <div class="text p-3">--}}
+{{--                        <span class="status sale">Rent</span>--}}
+{{--                        <div class="d-flex">--}}
+{{--                            <div class="one">--}}
+{{--                                <h3><a href="#">{{$data->region}}</a></h3>--}}
+{{--                                <p>{{$data->categoryName->title}}</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="two">--}}
+{{--                                <span class="price">{{$data->rentAmount}}</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <p>{{substr($data->description,0,50)}}</p>--}}
+{{--                        <hr>--}}
+{{--                        <p class="bottom-area d-flex">--}}
+{{--                            <span><i class="flaticon-selection"></i> {{$data->area}}  {{$data->unit}}</span>--}}
+{{--                            <span class="ml-auto"><i class="flaticon-bathtub"></i> {{$data->bathroom}}</span>--}}
+{{--                            <span><i class="flaticon-bed"></i> {{$data->bedroom }}</span>--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            @endforeach--}}
+{{--        </div>--}}
+{{--        --}}
         <div class="row">
-
-            @foreach($mostRecommended as $data)
-            <div class="col-sm col-md-6 col-lg ftco-animate">
-                <div class="properties">
-                    <a href="{{route('frontend.view.single.post',$data->id)}}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image:url('{{asset('image')}}/posts/{{$data->image}}');">
-                        <div class="icon d-flex justify-content-center align-items-center">
-                            <span class="icon-search2"></span>
-                        </div>
-                    </a>
-                    <div class="text p-3">
-                        <span class="status sale">Rent</span>
-                        <div class="d-flex">
-                            <div class="one">
-                                <h3><a href="#">{{$data->region}}</a></h3>
-                                <p>{{$data->categoryName->title}}</p>
+            <div class="col-md-12">
+                <div class="properties-slider owl-carousel ftco-animate">
+                    @foreach($mostRecommended as $data)
+                        <div class="col-sm col-md-6 col-lg ftco-animate">
+                            <div class="properties">
+                                <a href="{{route('frontend.view.single.post',$data->id)}}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image:url('{{asset('image')}}/posts/{{$data->image}}');">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <span class="icon-search2"></span>
+                                    </div>
+                                </a>
+                                <div class="text p-3">
+                                    <span class="status sale">Rent</span>
+                                    <div class="d-flex">
+                                        <div class="one">
+                                            <h3><a href="#">{{$data->region}}</a></h3>
+                                            <p>{{$data->categoryName->title}}</p>
+                                        </div>
+                                        <div class="two">
+                                            <span class="price">{{$data->rentAmount}}</span>
+                                        </div>
+                                    </div>
+                                    <p>{{substr($data->description,0,50)}}</p>
+                                    <hr>
+                                    <p class="bottom-area d-flex">
+                                        <span><i class="flaticon-selection"></i> {{$data->area}}  {{$data->unit}}</span>
+                                        <span class="ml-auto"><i class="flaticon-bathtub"></i> {{$data->bathroom}}</span>
+                                        <span><i class="flaticon-bed"></i> {{$data->bedroom }}</span>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="two">
-                                <span class="price">{{$data->rentAmount}}</span>
-                            </div>
                         </div>
-                        <p>{{substr($data->description,0,50)}}</p>
-                        <hr>
-                        <p class="bottom-area d-flex">
-                            <span><i class="flaticon-selection"></i> {{$data->area}}  {{$data->unit}}</span>
-                            <span class="ml-auto"><i class="flaticon-bathtub"></i> {{$data->bathroom}}</span>
-                            <span><i class="flaticon-bed"></i> {{$data->bedroom }}</span>
-                        </p>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-            @endforeach
         </div>
+{{--        --}}
+
+
+
     </div>
 </section>
 {{--end recommended property--}}
